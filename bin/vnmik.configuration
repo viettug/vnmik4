@@ -13,7 +13,7 @@ export IGNORE_DOC_SOURCE=1 # ignore texmf/doc and texmf/source
 export MINSIZE=200 # minimum size
 export VERSION=4.0.1 # current vnmik version
 export MAJOR_VERSION=4 # the major version
-export VNMIKID=31411 # vnmik id; another way to save vnmik version
+export VNMIKID=31415 # vnmik id; another way to save vnmik version
 # export VNMIKPW= # password to extract 7z archives
 export MIKTEX_VERSION='MikTeX-2.7-3224' # miktex version to be used
 
