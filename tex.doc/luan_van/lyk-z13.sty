@@ -1,0 +1,302 @@
+% =====================================================================
+% $Id: lyk-z13.sty 2278 2006-03-29 07:03:44Z kyanh $
+% Copyright (c) 2006 Vietnamese Tex Users Group <forum@viettug.org>
+% Original filename:
+%  scaled.tex
+% Original Author:
+%  Nguyen Van Hanh <texer@viettug.org>
+%    Department of Mathematics, Hue College
+% =====================================================================
+
+\ProvidesPackage{lyk-z13}
+[2006/12/06 size13 (workaround), VietTUG <forum@viettug.org>]
+
+\def\@xivpt{13.2}\renewcommand\large{\@setfontsize\large\@xivpt{18}}
+\providecommand{\U@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59><8><9>gen*#5%
+  <10><10.95><11-17><17.28><20.74><24.88>#510%
+  }{}}
+\DeclareFontFamily{U}{euex}{}
+\U@family{U}{euex}{m}{n}{euex}
+\DeclareFontFamily{U}{euf}{}
+\U@family{U}{euf}{m}{n}{eufm}
+\U@family{U}{euf}{b}{n}{eufb}
+\DeclareFontFamily{U}{eur}{\skewchar\font'177}
+\U@family{U}{eur}{m}{n}{eurm}
+\U@family{U}{eur}{b}{n}{eurb}
+\DeclareFontFamily{U}{eus}{\skewchar\font'60}
+\U@family{U}{eus}{m}{n}{eusm}
+\U@family{U}{eus}{b}{n}{eusb}
+\DeclareFontFamily{U}{msa}{}
+\U@family{U}{msa}{m}{n}{msam}
+\DeclareFontFamily{U}{msb}{}
+\U@family{U}{msb}{m}{n}{msbm}
+\providecommand{\OML@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59><8><9>gen*#5%
+      <10><10.95>#510%
+      <11-17><17.28><20.74><24.88>#512%
+  }{}}
+\DeclareFontFamily{OML}{cmm}{\skewchar\font127}
+\OML@family{OML}{cmm}{m}{it}{cmmi}
+\U@family{OML}{cmm}{b}{it}{cmib}
+\DeclareFontShape{OML}{cmm}{bx}{it}%
+   {<->ssub*cmm/b/it}{}
+\providecommand{\M@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<6.59><8><10><12><13.82><16.59><19.907>
+  <23.89><28.66><34.4><41.28>#58%
+  }{}}
+\DeclareFontFamily{OML}{lcmm}{\skewchar\font'177}
+\M@family{OML}{lcmm}{m}{it}{cmmi}
+\M@family{OML}{lcmm}{m}{Iit}{icmmi}
+\DeclareFontFamily{OMS}{cmsy}{\skewchar\font48}
+\U@family{OMS}{cmsy}{m}{n}{cmsy}
+\U@family{OMS}{cmsy}{b}{n}{cmbsy}
+\DeclareFontFamily{OMS}{lcmsy}{\skewchar\font'60}
+\M@family{OMS}{lcmsy}{m}{n}{cmsy}
+\M@family{OMS}{lcmsy}{m}{In}{icmsy}
+\providecommand{\O@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59><8><9><10><12>gen*#5%
+      <10.95>#510%
+      <13.2>#512%
+      <17.28><20.74><24.88>#517
+  }{}}
+\DeclareFontFamily{OT1}{cmr}{\hyphenchar\font45}
+\O@family{OT1}{cmr}{m}{n}{cmr}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\XM@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59>#58%
+      <8><9>gen*#5%
+      <10><10.95>#510%
+      <11-17><17.28><20.74><24.88>#512%
+  }{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\XM@family{OT1}{cmr}{m}{sl}{cmsl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\VX@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59>#57%
+      <8>#58%
+      <9>#59%
+      <10><10.95>#510%
+      <11-17><17.28><20.74><24.88>#512%
+  }{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VX@family{OT1}{cmr}{m}{it}{cmti}
+%%%%%%%%%%%%%
+\providecommand{\TE@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59><8><9><10><10.95><12>%
+      <13.2><17.28><20.74><24.88>#510%
+  }{}}
+
+%%%%%%%%%%%%%%%%
+\TE@family{OT1}{cmr}{m}{sc}{cmcsc}
+%
+\TE@family{OT1}{cmr}{m}{ui}{cmu}
+%%%%%%% bold series
+\TE@family{OT1}{cmr}{b}{n}{cmb}
+%%%%%%%% bold extended series
+\OML@family{OT1}{cmr}{bx}{n}{cmbx}
+\TE@family{OT1}{cmr}{bx}{sl}{cmbxsl}
+\TE@family{OT1}{cmr}{bx}{it}{cmbxti}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\TOE@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<5><6><6.59><8>#58%
+      <9>#59%
+      <10><10.95>#510%
+      <11-17>#512%
+      <17.28><20.74><24.88>#517%
+  }{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareFontShape{OT1}{cmr}{bx}{ui}
+      {<->sub*cmr/m/ui}{}
+\DeclareFontFamily{OT1}{cmss}{\hyphenchar\font45}
+\TOE@family{OT1}{cmss}{m}{n}{cmss}
+\DeclareFontShape{OT1}{cmss}{m}{it}
+      {<->sub*cmss/m/sl}{}
+\TOE@family{OT1}{cmss}{m}{sl}{cmssi}      
+%%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontShape{OT1}{cmss}{m}{sc}
+       {<->sub*cmr/m/sc}{}
+%%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontShape{OT1}{cmss}{m}{ui}
+       {<->sub*cmr/m/ui}{}
+%%%%%%%% semibold condensed series
+\TE@family{OT1}{cmss}{sbc}{n}{cmssdc}
+
+%%%%%%%%% bold extended series
+\TE@family{OT1}{cmss}{bx}{n}{cmssbx}
+%%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontShape{OT1}{cmss}{bx}{ui}
+       {<->sub*cmr/bx/ui}{}
+\DeclareFontFamily{OT1}{cmtt}{\hyphenchar \font\m@ne}
+\DeclareFontShape{OT1}{cmtt}{m}{n}
+     {%
+      <5><6><6.59><8>cmtt8<9>cmtt9%
+      <10><10.95>cmtt10%
+      <11-17><17.28><20.74><24.88>cmtt12%
+      }{}
+%%%%%% make sure subst shapes are available
+\TE@family{OT1}{cmtt}{m}{it}{cmitt}
+\TE@family{OT1}{cmtt}{m}{sl}{cmsltt}%\DeclareFontShape{OT1}{cmtt}{m}{sl}
+\TE@family{OT1}{cmtt}{m}{sc}{cmtcsc}
+\DeclareFontShape{OT1}{cmtt}{m}{ui}
+  {<->ssub*cmtt/m/it}{}
+\DeclareFontShape{OT1}{cmtt}{bx}{n}
+  {<->ssub*cmtt/m/n}{}
+\DeclareFontShape{OT1}{cmtt}{bx}{it}
+  {<->ssub*cmtt/m/it}{}
+\DeclareFontShape{OT1}{cmtt}{bx}{ui}
+  {<->ssub*cmtt/m/it}{}
+\DeclareFontFamily{OT1}{cmvtt}{\hyphenchar\font45 }
+\TE@family{OT1}{cmvtt}{m}{n}{cmvtt}
+\TE@family{OT1}{cmvtt}{m}{it}{cmvtti}
+ \DeclareFontFamily{OT1}{lcmss}{\hyphenchar\font45 }
+ \M@family{OT1}{lcmss}{m}{n}{lcmss}
+ \M@family{OT1}{lcmss}{m}{In}{ilcmss}
+ \providecommand{\LF@family}[5]{%
+  \DeclareFontShape{#1}{#2}{#3}{#4}
+  {<13.82><16.59><19.907><23.89><28.66><34.4><41.28>%
+ #58%
+  }{}}
+ \LF@family{OT1}{lcmss}{m}{sl}{lcmssi}
+ \LF@family{OT1}{lcmss}{m}{Isl}{ilcmssi}
+ \DeclareFontShape{OT1}{lcmss}{m}{it}{%
+      <->sub*lcmss/m/sl}{}
+ \DeclareFontShape{OT1}{lcmss}{m}{Iit}{%
+      <->sub*lcmss/m/Isl}{}
+ \LF@family{OT1}{lcmss}{bx}{n}{lcmssb}
+ \LF@family{OT1}{lcmss}{bx}{In}{ilcmssb}
+\DeclareFontShape{OT1}{lcmss}{m}{ui}{%
+      <->sub*cmr/m/ui}{}
+\DeclareFontShape{OT1}{lcmss}{bx}{ui}{%
+      <->sub*cmr/m/ui}{}
+ \DeclareFontFamily{OT1}{lcmtt}{\hyphenchar\font\m@ne}
+ \LF@family{OT1}{lcmtt}{m}{n}{cmtt}
+ \LF@family{OT1}{lcmtt}{m}{In}{icmtt}
+\LF@family{OT1}{lcmtt}{m}{it}{cmitt}
+\DeclareFontShape{OT1}{lcmtt}{m}{ui}{%
+      <->sub*cmtt/m/it}{}
+\DeclareFontShape{OT1}{lcmtt}{bx}{ui}{%
+      <->sub*cmtt/m/it}{}
+%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontFamily{U}{cmr}{\hyphenchar\font45 }
+\O@family{U}{cmr}{m}{n}{cmr}
+\XM@family{U}{cmr}{m}{sl}{cms}
+\VX@family{U}{cmr}{m}{it}{cmti}
+\TE@family{U}{cmr}{m}{sc}{cmcsc}
+\TE@family{U}{cmr}{m}{ui}{cmu}
+\TE@family{U}{cmr}{b}{n}{cmb}
+%%%%%%%% bold extended series
+\OML@family{U}{cmr}{bx}{n}{cmbx}
+
+\TE@family{U}{cmr}{bx}{sl}{cmbxsl}
+\TE@family{U}{cmr}{bx}{it}{cmbxti}
+% Again this is necessary for a correct \pounds symbol in
+% the cmr fonts Hopefully the dc/ec font layout will take
+% over soon.
+%
+\DeclareFontShape{U}{cmr}{bx}{ui}%
+      {<->sub*cmr/m/ui}{}
+\DeclareFontFamily{U}{cmss}{\hyphenchar\font45 }
+\TOE@family{U}{cmss}{m}{n}{cmss}
+% Font undefined, therefore substituted
+\DeclareFontShape{U}{cmss}{m}{it}%
+      {<->sub*cmss/m/sl}{}
+
+\TOE@family{U}{cmss}{m}{sl}{cmssi}
+%%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontShape{U}{cmss}{m}{sc}%
+       {<->sub*cmr/m/sc}{}
+%%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontShape{U}{cmss}{m}{ui}%
+       {<->sub*cmr/m/ui}{}
+%%%%%%%% semibold condensed series
+\TE@family{U}{cmss}{sbc}{n}{cmssdc}
+%%%%%%%%% bold extended series
+\TE@family{U}{cmss}{bx}{n}{cmssbx}
+%%%%%%% Font/shape undefined, therefore substituted
+\DeclareFontShape{U}{cmss}{bx}{ui}%
+       {<->sub*cmr/bx/ui}{}
+\DeclareFontFamily{U}{cmtt}{\hyphenchar \font\m@ne}
+\DeclareFontShape{U}{cmtt}{m}{n}%
+     {%
+      <5><6><6.59><8>cmtt8<9>cmtt9%
+      <10><10.95>cmtt10%
+      <11-17><17.28><20.74><24.88>cmtt12%
+      }{}
+%%%%%% make sure subst shapes are available
+\TE@family{U}{cmtt}{m}{it}{cmitt}
+\TE@family{U}{cmtt}{m}{sl}{cmsltt}
+\TE@family{U}{cmtt}{m}{sc}{cmtcsc}
+\DeclareFontShape{U}{cmtt}{m}{ui}%
+  {<->sub*cmtt/m/it}{}
+\DeclareFontShape{U}{cmtt}{bx}{n}%
+  {<->sub*cmtt/m/n}{}
+\DeclareFontShape{U}{cmtt}{bx}{it}%
+  {<->sub*cmtt/m/it}{}
+\DeclareFontShape{U}{cmtt}{bx}{ui}%
+  {<->sub*cmtt/m/it}{}
+\DeclareFontFamily{U}{lasy}{} \DeclareFontShape{U}{lasy}{m}{n}{ <5>
+<6> <6.59> <8> <9> gen * lasy
+      <10> <10.95> <12> <13.2> <17.28> <20.74> <24.88>lasy10  }{}
+\DeclareFontShape{U}{lasy}{b}{n}{ <-10> ssub * lasy/m/n
+     <10> <10.95> <12> <13.2> <17.28> <20.74> <24.88>lasyb10  }{}
+\DeclareFontFamily{U}{llasy}{}
+\DeclareFontShape{U}{llasy}{m}{n}{%
+      <12><13.82><16.59><19.907><23.89><28.66><34.4><41.28>lasy8%
+}{}
+\LF@family{U}{llasy}{m}{In}{ilasy}
+\DeclareFontFamily{T5}{cmr}{\hyphenchar\font45}
+\O@family{T5}{cmr}{m}{n}{vnr}
+\XM@family{T5}{cmr}{m}{sl}{vnsl}
+\VX@family{T5}{cmr}{m}{it}{vnti}
+\TE@family{T5}{cmr}{m}{sc}{vncsc}
+\TE@family{T5}{cmr}{m}{ui}{vnu}
+\TE@family{T5}{cmr}{b}{n}{vnb}
+\OML@family{T5}{cmr}{bx}{n}{vnbx}
+\TE@family{T5}{cmr}{bx}{sl}{vnbxsl}
+\TE@family{T5}{cmr}{bx}{it}{vnbxti}
+\DeclareFontShape{T5}{cmr}{bx}{ui}
+      {<->sub*cmr/m/ui}{}
+\DeclareFontFamily{T5}{cmss}{\hyphenchar\font45 }
+\TOE@family{T5}{cmss}{m}{n}{vnss}
+\DeclareFontShape{T5}{cmss}{m}{it}
+      {<->sub*cmss/m/sl}{}
+      
+\TOE@family{T5}{cmss}{m}{sl}{vnssi}
+\DeclareFontShape{T5}{cmss}{m}{sc}
+       {<->sub*cmr/m/sc}{}
+\DeclareFontShape{T5}{cmss}{m}{ui}
+       {<->sub*cmr/m/ui}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       
+\TE@family{T5}{cmss}{sbc}{n}{vnssdc}
+\TE@family{T5}{cmss}{bx}{n}{vnssbx}
+\DeclareFontShape{T5}{cmss}{bx}{ui}
+       {<->sub*cmr/bx/ui}{}
+\DeclareFontFamily{T5}{cmtt}{\hyphenchar \font\m@ne}
+\TOE@family{T5}{cmtt}{m}{n}{vntt}
+\TE@family{T5}{cmtt}{m}{it}{vnitt}
+\TE@family{T5}{cmtt}{m}{sl}{vnsltt}
+\TE@family{T5}{cmtt}{m}{sc}{vntcsc}
+\DeclareFontShape{T5}{cmtt}{m}{ui}
+  {<->ssub*cmtt/m/it}{}
+\DeclareFontShape{T5}{cmtt}{bx}{n}
+  {<->ssub*cmtt/m/n}{}
+\DeclareFontShape{T5}{cmtt}{bx}{it}
+  {<->ssub*cmtt/m/it}{}
+\DeclareFontShape{T5}{cmtt}{bx}{ui}
+  {<->ssub*cmtt/m/it}{}
+\DeclareFontFamily{T5}{cmvtt}{\hyphenchar\font45 }
+\TE@family{T5}{cmvtt}{m}{n}{vnvtt}
+\TE@family{T5}{cmvtt}{m}{it}{vnvtti}
+
+\AtBeginDocument{\large}
+
+\endinput

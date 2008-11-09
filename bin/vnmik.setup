@@ -1,0 +1,51 @@
+#!bash
+
+source vnmik.configuration
+source vnmik.message.utils
+source vnmik.functions
+source vnmik.validators
+source vnmik.package.installer
+source vnmik.package.make
+source vnmik.registry.tools
+
+# hack for setup ;)
+export PKGDIR="`pwd`/vnmik.package"
+
+hello
+
+msg
+stat_msg "INSTALLING"
+msg
+
+check_PreviousInstance
+check_PreviousVersion
+check_OS
+check_RWVnMik
+check_DiskSpace 120
+
+check_RWRegistryDatabase
+check_PATHinRegistry
+
+check_PDFReader
+
+check_UserHome
+check_RegeditProgram
+check_PowerPrivilege
+
+install_version
+registry_backup
+
+echo -en '' > $LOGDIR/log.packages
+
+install_package \
+	$PKGDIR/{tex_{base,config,user,var,bin},texmaker}$PKG_SUFFIX
+
+texmf_texhash
+
+stat_msg "test if the system works..."
+
+install_package $PKGDIR/vnmik_test$PKG_SUFFIX
+
+cleanup
+
+pause

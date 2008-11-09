@@ -1,0 +1,101 @@
+#!bash
+
+########################################################################
+#
+# VnMiK, small MiKTeX for Vietnamese
+# Homepage: http://vnmik.sf.net/
+#
+# Author: kyanh <xkyanh at gmail dot com>
+#
+########################################################################
+
+######################################################## CONFIGURATION #
+
+source 0conf
+source 0functions
+
+fix_PATH
+
+ALLPKG="\
+texmf_user.r \
+texmf_config.r \
+texmf_root.r \
+texmf_extra.r \
+texmf_vntex.r \
+doc.r \
+txc.r \
+efont.r \
+miktex.r \
+texaide.r \
+latable.r \
+vnmikbin.r \
+"
+
+#ALLPKG="texmf_root.r"
+
+######################################################## CONFIGURATION #
+
+set_color 0
+
+hello
+
+####################################################### MANDOTORY PART #
+
+#for pkg in $ALLPKG; do
+#	check_package pkg `basename $pkg .r`.md5sum
+#done
+
+####################################################### MANDOTORY PART #
+
+check_OS
+check_PreviousInstance
+check_Version
+check_DiskSpace
+check_RWVnMik
+clear_log
+check_RegeditProgram
+check_RWRegistryDatabase "HKCU"
+if [ $? -ge 1 ]; then
+	stat_fail "unwritable: HKCU"
+fi
+check_RWRegistryDatabase "HKLM"
+#if [ $? -ge 1 ]; then
+#	stat_fail "unwritable = HKLM"
+#fi
+
+######################################################## OPTIONAL PART #
+
+check_PDFReader
+if [ $? -ge 1 ]; then
+	ALLPKG="acr.r $ALLPKG"
+fi
+
+cd pkg
+test_package $ALLPKG
+cd "$OLDPWD"
+
+check_PATHinRegistry
+
+######################################################### INSTALLATION #
+
+install_version
+
+# 
+# echo 
+# echo '' > "$PREFIX/vnmik/log/pkg" > /dev/null 2>&1
+
+cd pkg
+install_package $ALLPKG
+cd "$OLDPWD"
+
+############################################################# EXIT NOW #
+
+# fix_files_mode
+
+cleanup
+
+########################################################################
+
+show_readme
+
+stat_done "0setup has finished the job"

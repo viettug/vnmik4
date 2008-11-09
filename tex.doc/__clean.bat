@@ -1,0 +1,9 @@
+@echo off
+cd c:\vnmik\doc\gastex
+call __clean.bat
+cd c:\vnmik\doc\luanvan
+call __clean.bat
+cd c:\vnmik\doc\vidu
+call __clean.bat
+cd c:\vnmik\doc\bvntex
+call __clean.bat

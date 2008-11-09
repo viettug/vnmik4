@@ -1,0 +1,46 @@
+#!gawk -f
+#
+# $Id: 0ini_rm_sec 4 2006-08-11 15:03:15Z vnmik $
+#
+# Remove a section (XSECTION) from an INI file
+#
+# Author: kyanh <kyanh at o2 dot pl>
+# License: GPL
+#
+# EXAMPLE:
+#
+# remove [txc] section from gsview32.ini file
+#
+#	gawk -v "XSECTION=[txc]" -f 0initool0 gsview32.ini
+#
+# RETURN:
+#
+#	2 : nothing to remove (section not found)
+#	3 : something was removed (section found and removed)
+#
+# NOTE:
+#
+#	This program is non-case sensitive
+#	The program also drops all empty lines ;)
+#
+
+BEGIN {
+	IGNORECASE = 1
+	CurrentSection = 0
+	IgnoreSection = -1
+	FS="\n"
+}
+
+/^\[[^\]]+\]$/ {
+	++CurrentSection
+	if ($0 == XSECTION) IgnoreSection = CurrentSection
+}
+
+{
+	if ($0 == "" ) next
+	if (CurrentSection != IgnoreSection) print
+}
+
+END {
+	exit 2 + (IgnoreSection > -1)
+}

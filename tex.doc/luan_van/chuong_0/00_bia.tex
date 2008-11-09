@@ -1,0 +1,107 @@
+% $Id: title.tex 3333 2006-11-30 14:22:28Z kyanh $ %
+
+% =====================================================================
+% \addcontentsline{toc}{chapter}{Trang phô b×a}
+% =====================================================================
+
+% =====================================================================
+% fonts %
+
+\def\fme{?}
+\let\fmef\fme
+\let\fmeg\fme
+\let\ftitle\fme
+
+% =====================================================================
+% the main title (main.tex only) %
+
+\ifmain
+	\newpage
+	\thispagestyle{empty}
+	\begin{center}
+		\begingroup
+		\large
+			\textsc{Bé gi¸o dôc vµ §µo t¹o}\\[1.2mm]
+			\textsc{§¹i häc HuÕ}\\
+			\textsc{Tr­êng §¹i häc S­ ph¹m}\\
+			\rule{4cm}{.2mm}
+		\endgroup
+		
+		\vskip3cm
+		
+		{\fme HUúNH\, Kú ANH}
+		
+		\vskip2cm
+		
+		{\ftitle MÆT BLW\\[3mm]Vµ BµI TO¸N BJ\"ORLING}%
+		
+		\vfill
+		
+		{\fme LUËN V¡N TH¹C SÜ TO¸N HäC}
+		
+		\vfill
+		
+		\textsc{huÕ, n¨m 2006}
+	\end{center}
+\fi
+
+% =====================================================================
+% the main title (summary.tex) and subtitle (main.tex)
+
+\newpage
+\thispagestyle{empty}
+\setcounter{page}1
+
+% =====================================================================
+% the title %
+
+\begin{center}
+\begingroup
+	\ifmain \large \fi
+	\textsc{Bé Gi¸o dôc vµ §µo t¹o}\\[1.2mm]
+	\textsc{§¹i häc HuÕ}\\
+	\textsc{Tr­êng §¹i häc S­ ph¹m}\\
+	\rule{4cm}{.2mm}
+\endgroup
+
+\ifmain\vskip3cm\else\vskip 15mm\fi
+
+{\fme HUúNH\, Kú ANH}
+
+\ifmain\vskip2cm\else\vskip 10mm\fi
+
+{\ftitle
+	MÆT BLW\ifmain \\[3mm]\else\\[2mm]\fi
+	Vµ BµI TO¸N BJ\"ORLING
+}%
+
+\ifmain\vskip9mm\else\vskip8mm\fi
+
+\begin{tabular}{rl}
+{\fmeg Chuyªn ngµnh:}
+	&{\fmef h×nh häc vµ t«p«}\\[2mm]
+{\fmeg M· sè:}
+	&{\fmef 60 46 10}
+\end{tabular}
+
+\vfill
+
+{\fme LUËN V¡N TH¹C SÜ TO¸N HäC}
+
+\ifmain\else
+\vskip2mm
+{\fmeg (B¶n tãm t¾t)}
+\fi
+
+\ifmain\vskip15mm\else\vskip15mm\fi
+
+{\fmeg Ng­êi h­íng dÉn khoa häc: }
+\ifmain\else\\[1em]\fi
+{\fmef PGS. TS. §OµN THÕ HIÕU}
+
+\vfill
+
+\textsc{HuÕ, n¨m 2006}
+\end{center}
+
+\endinput

@@ -1,0 +1,13 @@
+#!bash
+
+source 0conf
+source 0functions
+
+fix_PATH
+
+check_PreviousInstance
+
+cd pkg
+install_net_package
+
+cleanup

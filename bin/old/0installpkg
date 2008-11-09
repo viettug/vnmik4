@@ -1,0 +1,19 @@
+#!bash
+
+source 0conf
+source 0functions
+
+set_color 0
+
+stat_log "this is 0installpkg; going to install local packages"
+
+fix_PATH
+
+check_PreviousInstance
+
+cd pkg
+install_package $(ls *.{r,cab,tar.bz2} 2>/dev/null)
+
+cleanup
+
+stat_done "0installpkg has finished the job"

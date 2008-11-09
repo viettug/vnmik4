@@ -1,0 +1,80 @@
+#!bash
+source 0conf
+
+RAR="rar a -r -m5 -zcomment.txt "
+
+#cd /cygdrive/c/vnmik
+
+cat > comment.txt <<EOF
+VnMiK-$VNMIKID package
+Home: http://vnmik.sf.net/
+EOF
+
+makepkg()
+{
+	while [ "x$1" != "x" ]; do
+		if [ "$1" == "txc" ]; then
+		 $RAR txc.r apps/txc vnmik/postinstall/txc*
+		elif [ "$1" == "acr" ]; then
+		 $RAR acr.r apps/pdfreader apps/resource
+		elif [ "$1" == "gx" ]; then
+		 $RAR gx.r apps/gx vnmik/postinstall/gx*
+		elif [ "$1" == "efont" ]; then
+		 $RAR efont.r vnmik/postinstall/efont* vnmik/postinstall/vnmiku.ttf
+		elif [ "$1" == "vntex" ]; then
+		 $RAR texmf_vntex.r texmf_vntex/ vnmik/postinstall/texmf_vntex
+		elif [ "$1" == "root" ]; then
+		 $RAR texmf_root.r texmf_root/{bibtex,dvipdfm,dvips,fontname,fonts,ghostscript,makeindex,metafont,metapost,mft,pdftex,psutils,scripts,tex,ttf2pfb,ttf2tfm}
+		elif [ "$1" == "config" ]; then
+		 $RAR -x texmf_config.r texmf_config/
+		elif [ "$1" == "user" ]; then
+		 $RAR texmf_user.r texmf_user/
+		elif [ "$1" == "var" ]; then
+		 $RAR texmf_var.r texmf_var/
+		elif [ "$1" == "miktex" ]; then
+		 $RAR miktex.r texmf_root/miktex vnmik/postinstall/miktex*
+		elif [ "$1" == "lock" ]; then
+		 for f in *.r; do
+		  echo "locking $f"
+		  rar k $f >/dev/null 2>&1
+		 done
+		elif [ "$1" == "md5" ]; then
+		 for f in *.r; do
+		  echo "generating md5sum for $f"
+		  md5sum $f > `basename $f .r`.md5sum
+		 done
+		elif [ "$1" == "bin" ]; then
+		 $RAR vnmikbin.r vnmik/bin/
+		elif [ "$1" == "texaide" ]; then
+		 $RAR texaide.r apps/{texaide.exe,ee4.dsc} vnmik/postinstall/{mtextra.ttf,texaide*}
+		elif [ "$1" == "latable" ]; then
+		 $RAR latable.r apps/latable.exe vnmik/postinstall/latable
+		elif [ "$1" == "vnmikbin" ]; then
+		 $RAR vnmikbin.r vnmik/*.bat vnmik/postinstall/vnmikbin
+		elif [ "$1" == "latexmac" ]; then
+		 $RAR latexmac.r apps/latexmac.exe vnmik/postinstall/latexmac*
+		elif [ "$1" == "doc" ]; then
+		 $RAR doc.r doc
+		elif [ "$1" == "301p1" ]; then
+		 $RAR vnmik-3.0.1-patch-1.r \
+			texmf_user/tex/latex/oberdiek/{kvoptions,refcount}.sty \
+			apps/txc/msxml{4,4a,4r}.dll \
+			vnmik/postinstall/vnmik-3.0.1-patch-1
+		fi
+		shift
+	done
+}
+
+if [ "$1" == "all" ]; then
+	rm -fv *.r
+	makepkg \
+		txc acr gx efont \
+		vntex root config user var \
+		miktex \
+		texaide latable \
+		vnmikbin latexmac
+else
+	makepkg "$@"
+fi
+
+#cd "$OLDPWD"

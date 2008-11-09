@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+
+\usepackage[tcvn]{vietnam}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm,nohead}
+
+\begin{document}
+
+\rightline{\textit{to my friends: ngxhau, hlhbac, texer, hoang, \ldots}}
+
+\begin{verbatim}
+
+MÉu luËn v¨n (dù ¸n vnthesis)
+Hç trî viÕt luËn v¨n (dù ¸n vnthesis)
+
+
+
+T¸c gi¶: Huúnh Kú Anh <kyanh@viettug, xkyanh@gmail.com>
+Phiªn b¶n: 1.1.1 (®ang ph¸t triÓn)
+CËp nhËt: ngµy 06/07 th¸ng 12 n¨m 2006
+
+
+
+Môc lôc
+=======
+     Lêi c¸m ¬n
+     Gióp ®ì, gãp ı
+     H­íng dÉn
+     Chó ı
+     LŞch sö ph¸t triÓn
+
+Lêi c¸m ¬n
+==========
+
+C¸m ¬n c¸c b¹n sau ®· ®ãng gãp cho vnthesis (incomplete random list)
+     {longgia2001,cuong12giaitich,misuzu,newman,hoangoclan,texe,...}@viettug
+     {falleaf,crank ninja,thanh,haiau2007}@vnoss
+
+Gióp ®ì. Gãp ı
+==============
+     Trang chñ:
+          - http://viettug.org/vnthesis/
+
+     DiÔn ®µn:
+          - VietTUG, http://viettug.org/ (Vietnamese TeX Users Group)
+          - Box LaTeX t¹i http://forum.vnoss.org/
+
+     Xem thªm:
+          - viÕt luËn v¨n: thesis-vn (hoangoclan@viettug)
+          - m«i tr­êng ®Şnh lı: ntheorem-doc-vn (kyanh)
+          - gâ c«ng thøc to¸n: amsmath-doc-vn (kyanh)
+          - chän font tiÕng ViÖt: vntex-font-selection (thanh@vnoss,hoangoclan@viettug)
+
+     C¸c tµi liÖu nµy cã t¹i http://download.viettug.org/
+
+H­íng dÉn
+=========
+
+b­íc 1:
+     x¸c ®Şnh cÊu tróc luËn v¨n cña b¹n
+
+b­íc 2:
+     t¹o c¸c th­ môc chuong_0, chuong_1, chuong_2,...
+     chuong_0:
+          lêi c¸m ¬n, môc lôc, giíi thiÖu,...
+     ch­¬ng 1:
+          néi dung
+     ch­¬ng 2:
+     ...
+
+b­íc 3:
+     trong mçi ch­¬ng, b¹n t¹o c¸c tµi liÖu nh­ sau:
+          00_config.tex : cÊu h×nh, ®­îc n¹p vµo ®Çu ch­¬ng; cã thÓ bá qua
+          02_gioi_thieu.tex : giíi thiÖu vÒ ch­¬ng
+          04_muc_1.tex : môc ®Çu tiªn cña ch­¬ng
+          06_muc_2.tex : môc tiÕp theo cña ch­¬ng
+          08_...
+     
+     viÖc dïng con sè 02,04,06,... ¸m chØ thø tù cña c¸c môc;
+     vİ dô môc 04_muc_1.tex sÏ ®­îc s¾p tr­íc môc 06_muc_2.tex;
+     
+     viÖc dïng 02,04,06,... cã ®iÓm lîi lµ sau nµy b¹n cã thÓ chÌn
+     vµo ch¼ng h¹n tËp tin 03_chen_them.tex. Ph¶i dïng 01, 02,...
+     ®Ó ®¶m b¶o c¸c tËp tin cã ®óng thø tù nh­ b¹n muèn
+
+     sau ®ã, thi hµnh ch­¬ng tr×nh __xxx.bat; ch­¬ng nµy nµy sÏ
+     t×m kiÕm vµ liÖt kª tÊt c¶ c¸c tËp tin *.tex trong c¸c ch­¬ng,
+     theo ®óng thø tù b¹n chØ ra; nã t¹o ra tËp tin 
+          all.tex
+     sÏ ®­îc n¹p trong luan_van.tex
+
+     sau nµy, mçi khi thªm, bít c¸c tËp tin vµ c¸c ch­¬ng,
+     b¹n chØ viÖc ch¹y __xxx.bat ®Ó cËp nhËt tËp tin all.tex.
+
+     B¹n h·y ®äc néi dung tËp tin all.tex ®Ó biÕt vµi ®iÒu cã İch
+
+     Cuèi cïng, nÕu dïng VnMiK, b¹n cã thÓ xãa bá hoµn tßan th­ môc `bin`
+
+b­íc 4:
+     Thay ®æi cÊu h×nh cho phï hîp víi b¹n:
+
+          main.bib:
+               tµi liÖu tham kh¶o; xem thªm tµi liÖu cña gãi biblatex
+          mystyle.sty:
+               gãi c¸ nh©n, n¬i b¹n ®Æt c¸c ®Şnh nghÜa cña riªng b¹n,
+               n¹p c¸c gãi,...
+          ntheorem.cfg:
+               c¸c m«i tr­êng ®Şnh lı; khi thªm, bít c¸c m«i tr­êng ®Şnh lı,
+               b¹n ph¶i thay ®æi lÖnh
+                    \foomycounters
+               H·y quan s¸t vµ lµm theo. (NÕu mét m«i tr­êng ®­îc ®¸nh sè
+               theo m«i tr­êng kh¸c, kh«ng thªm vµo lÖnh \foomycounters nhĞ)
+
+     B¹n còng cÇn thay ®æi c¸c tËp tin sau nÕu cÇn thiÕt:
+
+          biblatex.cfg:
+               thiÕt lËp cho trang Tµi liÖu tham kh¶o
+          tom_tat.cfg:
+               cÊu h×nh cho b¶n tãm t¾t
+          luan_van.cfg:
+               cÊu h×nh cho luËn v¨n (b¶n chİnh)
+
+b­íc 5:
+     ı t­ëng cña vnthesis lµ b¹n chØ viÕt b¶n chİnh, cßn néi dung
+     cña b¶n tãm t¾t sÏ ®­îc sinh ra tõ b¶n chİnh ®ã. Mét c¸ch tù ®éng,
+     sao cho c¸c sè cña ph­¬ng tr×nh, ®Şnh lı kh«ng thay ®æi trong b¶n tãm t¾t.
+
+     Khi so¹n th¶o néi dung b¶n chİnh, b¹n cã thÓ dïng mét trong c¸c
+     m«i tr­êng sau:
+     (a)
+          \begin{Export}{xyz}
+               néi dung trong m«i tr­êng nµy sÏ ®­îc xuÊt ra tËp tin t¹m,
+               vµ ®­îc l­u trong mét tËp tin thİch hîp. Nhí r»ng, néi dung
+               nµy kh«ng xuÊt hiÖn tù ®éng trong b¶n chİnh. ViÖc l­u t¹m
+               néi dung nµy nh»m môc ®İch: b¹n viÕt mét lÇn, dïng ë c¸c
+               chç kh¸c nhau. Ch¼ng h¹n, lêi giíi thiÖu cña c¸c ch­¬ng
+               cã thÓ n¹p vµo trong phÇn giíi thiÖu
+          \end{Export}
+          
+          §Ó n¹p néi dung ®· xuÊt ra tËp tin t¹m ®ã, b¹n dïng lÖnh sau:
+               \Import{xyz}
+          
+          Xem vİ dô trong
+               chuong_0/*_loi_gioi_thieu.tex
+               chuong_1/*_gioi_thieu_chuong.tex
+               ...
+
+     (b)
+          \begin{ExportI}
+               néi dung nµy võa xuÊt hiÖn trong b¶n chİnh võa xuÊt hiÖn
+               trong b¶n tãm t¾t cña luËn v¨n
+          \end{ExportI}
+
+          Xem vİ dô trong
+               chuong_3/*_ket_luan.tex
+
+     (c)
+          \begin{ExportIOnly}
+               néi dung nµy chØ xuÊt hiÖn trong b¶n tãm t¾t cña luËn v¨n
+          \end{ExportIOnly}
+
+          Xem vİ dô trong
+               chuong_1/*_gioi_thieu_chuong.tex
+
+b­íc 6:
+     t¹o dù ¸n trong Editor cña b¹n. (NÕu dïng TeXnicCenter, ®· cã s½n
+     dù ¸n luan_van.tcs cho b¹n råi!). biªn dŞch, xem,...
+     
+     b¹n còng cã thÓ dïng c¸c ch­¬ng tr×nh sau:
+          __luan_van.bat:
+               biªn dŞch b¶n chİnh cña luËn v¨n
+          __tom_tat.bat:
+               biªn dŞch b¶n tãm t¾t cña luËn v¨n
+               sinh ra mét b¶n cã c¸c trang ®­îc s¾p theo thø tù tuyÕn tİnh,
+               vµ mét b¶n cã c¸c trang ®­îc s¾p d¹nh cuèn s¸ch ®Ó in
+               (khi in b¶n tãm t¾t, b¹n in nh­ cuèn s¸ch mµ!)
+          __all.bat:
+               lµm c¶ hai c«ng viÖc trªn
+          __clean.bat:
+               dän dÑp, xãa bá c¸c tËp tin t¹m sinh ra khi biªn dŞch
+
+Chó ı
+=====
+     - cã thÓ dïng tïy chän 13pt ®Ó cã font cì lín
+     - khi thay ®æi ntheorem.cfg b¹n ph¶i thay ®æi lÖnh \foomycounters
+          cã trong tËp tin ®ã
+     - nÕu dïng vnmik 3.0.3 trë ®i, b¹n cã thÓ xãa bá th­ môc bin
+     - m«i lÇn thªm tËp tin vµo c¸c ch­¬ng, b¹n ph¶i ch¹y tËp tin __xxx.bat
+     - tªn cña c¸c ch­¬ng ph¶i lµ ch÷ th­êng
+     - vİ dô vÒ chÌn h×nh ¶nh (jpg,png,eps) cã trong
+          chuong_2/*_hinh_anh.tex
+     - kh«ng nªn thay ®æi c¸c tËp tin sau:
+          main.sty
+          luan_van.tex
+          tom_tat.tex
+          vnthesis.cls
+     - c¸c ch­¬ng tr×nh __*.bat chØ thİch hîp trªn hÖ thèng Windows NT (XP,2000,...)
+
+LŞch sö ph¸t triÓn
+==================
+     
+     vnthesis lµ chñ ®Ò ®­îc trao ®æi nhiÒu t¹i ViÖtTUG vµ VnOSS.
+     Dù ¸n ®­îc khëi ®éng l¹i sau nh÷ng ı kiÕn cña falleaf@vnoss.
+\end{verbatim}
+
+\end{document}

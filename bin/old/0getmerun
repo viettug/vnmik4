@@ -1,0 +1,16 @@
+#!bash
+
+source 0conf
+source 0functions
+
+set_color 0
+
+stat_log "this is 0getmerun; going to update texmf database"
+
+fix_PATH
+
+get_me_run
+
+cleanup
+
+stat_done "0getmerun has finished the job"

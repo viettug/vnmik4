@@ -1,0 +1,391 @@
+#!gawk -f
+#
+# $Id: 0txca 20 2006-08-15 15:09:01Z vnmik $
+#
+# Build binary data for TeXnicCenter Tool Menu (beta 7.01 or higher)
+#
+#	/HKCU/Software/ToolsCenter/TeXnicCenter/Settings/Tools
+#
+# Author: kyanh <kyanh at o2 dot pl>
+# License: GPL
+#
+# NOTE:
+#	unicode is unsupported. as the limitation of (ord) function
+#	does (gawk) support unicode?
+#
+# BINARY FORMAT:
+#
+# <number of tools>
+# <header part>
+#	<\x00\x00\xFF\xFF\x01\x00\x90\x00>
+#	<CUserTool>
+# <tool 0>
+#	<length of caption><caption>
+#	<length of command><command>
+#	<length of param><param>
+#	<length of initial directory><inidir>
+#	<index (0) + \x38>
+#	<separator> (\x95\x00\x00)
+#	<separator2> (\x01\x80)
+# <tool 1>
+#	<index (1) + \x38>
+#	<separator>
+#	<separator2>
+# <tool 2>
+#	<index (2) + \x38>
+#	<separator>
+#	<separator2>
+# ...
+# <tool n>
+#	<index (n) + \x38>
+#	<separator>
+#
+
+##################################################
+
+
+BEGIN {
+	FS = "" #
+	RS = "" # the whole files == a single record
+	T_COUNT = "" # number of tools
+	T_HEADER = "" # header part (to be preserved)
+	T_HEADER_A = "\x00\xFF\xFF\x01\x00\x09\x00"
+	T_HEADER_A = sprintf("%sCUserTool",T_HEADER_A)
+	T_SEP_A = "\x95\x00\x00"
+	T_SEP_B = "\x95\x00\x00\x01\x80"
+	T_A[1] = "" # array of tools
+	T_B[1,1] = ""
+	ALL_ASCII = all_ascii() # all ascii characters
+	T_SEP = "" # seperators
+#	SUBSEP = "@"
+
+	IGNORE_INDEX=0
+
+	# VAR:
+	# XACTION
+	# XCAPTION, XCOMMAND, XPARAM, XINIDIR
+
+	# return codes
+	RET_BAD_HEADER=12
+	RET_TOOL_UPDATED=13
+	RET_TOOL_ADDED=14
+	RET_TOOL_BAD_FORMAT=15
+	RET_MISS_ARGUMENT=16
+
+	if (XACTION == "") XACTION = "decode"
+	if (VERBOSE == "")  VERBOSE = 1
+	if (XPRINTREG == "") XPRINTREG = 0
+}
+
+##################################################
+
+# print list of ascii characters
+function all_ascii (retst) {
+	retst = ""
+	for (i=0; i <= 255; i++) {
+		retst = sprintf("%s%c",retst,i)
+	}
+	return retst
+}
+
+# print ORD of a character, method 2
+# return -1 if out of range
+# in order to support unicode we must know the RANGE (instead of 255)
+function ord2(char,i) {
+	i = 0
+	while (i <= 255) {
+		tmpst = sprintf("%c",i)
+		if ( char == tmpst ) {
+			return i
+		}
+		i++
+	}
+	return -1
+}
+
+# print ORD of a character, method 1
+# return ord(?) if out of range
+function ord(char,i) {
+	i = index(ALL_ASCII,char)
+	if (i == 0) i = index(ALL_ASCII, "?")
+	i--
+	return i
+}
+
+# count length of array Ta
+function count(Ta,i,n) {
+	n = 0
+	for (i in Ta) n++
+	return n
+}
+
+# decode a tools string and return an array
+function decode_as_array(st,Tret,l,n) {
+	l = length(st) # length of st
+	if (VERBOSE >= 2)
+		printf ("to be decoded : %s\n", st)
+	start = 1
+	n = ord(substr(st,start,1)) # length of caption
+	if ( start + n <= l )
+		Tret[1] = substr(st,start + 1,n) # caption
+	else
+		Tret[1] = ""
+
+	start += n+1
+	n = ord(substr(st,start,1))
+	if ( start + n <= l )
+		Tret[2] = substr(st,start + 1,n) # command
+	else
+		Tret[2] = ""
+
+	start += n+1
+	n = ord(substr(st,start,1))
+	if ( start + n <= l )
+		Tret[3] = substr(st,start + 1,n) # parameter
+	else
+		Tret[3] = ""
+
+	start += n+1
+	n = ord(substr(st,start,1))
+	if ( start + n <= l )
+		Tret[4] = substr(st,start + 1,n) # initial directory
+	else
+		Tret[4] = ""
+
+	# index of the tool (~ keyboard shortcut)
+
+	start += n+1
+	if ( start <= l )
+		Tret[5] = ord( substr(st,start,1) ) - 56
+	else
+		Tret[5] = -1
+
+	return (Tret[1] != "") && (Tret[5] > -1)
+}
+
+# decode but return a string
+function decode_as_string(st,Tret) {
+	decode_as_array(st,Tret)
+	return sprintf("{%s,%s,%s,%s,%d}",Tret[1],Tret[2],Tret[3],Tret[4],Tret[5])
+}
+
+# encoded an array
+# suffix == 1: use T_SEP_B or T_SEP_A
+function encode(Ta,sep,i,st) {
+	if (VERBOSE >= 2)
+		printf ("to be encoded : %s,%s,%s,%s,%d\n", Ta[1],Ta[2],Ta[3],Ta[4],Ta[5]) > "/dev/stderr" 
+
+	st = ""
+	for ( i = 1; i <= 4; i++ ) {
+		st = sprintf("%s%c%s", st, length(Ta[i]), Ta[i])
+	}
+	st = sprintf("%s%c", st, 56 + Ta[5]) # 56 = \x38
+	if (sep == 1) {
+		st = sprintf("%s%s", st, T_SEP_B)
+	}else{
+		st = sprintf("%s%s", st, T_SEP_A)
+	}
+	return st
+}
+
+function str_to_hex(st,i,retst) {
+	retst=""
+	for ( i=1; i <= length(st); i++ ) {
+		retst = sprintf("%s%x",retst,ord( substr(st,i,1) ) )
+	}	
+	return retst
+}
+
+function build_registry_data(st,i,retst,j) {
+	retst="\
+REGEDIT4\n\
+[HKEY_CURRENT_USER\\Software\\ToolsCenter]\n\
+[HKEY_CURRENT_USER\\Software\\ToolsCenter\\TeXnicCenter]\n\
+[HKEY_CURRENT_USER\\Software\\ToolsCenter\\TeXnicCenter\\Settings]\n\
+\"Tools\"=hex:"
+	j=1
+	for ( i=1; i <= length(st); i++ ) {
+		retst = sprintf("%s%02x,",retst,ord( substr(st,i,1) ) )
+		if ( j == 16 ) {
+			j = 1;
+			retst = sprintf("%s\\\n",retst)
+		}else{
+			j++
+		}
+	}
+	i = length(retst)
+	if (substr(retst,i,1) == ",")
+		retst = substr(retst,1,i-1)
+
+	return retst
+}
+##################################################
+
+# convert an array of strings to a single string
+function array_to_string(Ta,st,i) {
+	st = ""
+	for (i=1; i <= 5; i ++) {
+		st = sprintf("%s%s", st, Ta[i])
+	}
+	return st
+}
+
+# search for a tool. return the index if found
+function search_tool(st,i) {
+	for (i=1; i <= T_COUNT; i++) {
+		if (st == T_B[i,1]) {
+			return i
+		}
+	}
+	return 0
+}
+
+##################################################
+
+{
+	T_COUNT = ord(substr($0,1,1)) # number of tools
+	T_COUNT_A = T_COUNT
+	T_HEADER = substr($0,2,16) # to be preserved
+	if (T_COUNT >1 ) {
+		T_SEP = T_SEP_B
+	}else{
+		T_SEP = T_SEP_A
+	}
+	split(substr($0,18),T_A,T_SEP)
+}
+
+##################################################
+
+END {
+
+	if ( XACTION == "help" ) {
+		printf ( \
+"Decode and encode Registry Binary Data of TeXniCenter Tool Menu\n\
+ ( /HKCU/Software/ToolsCenter/TeXnicCenter/Settings/Tools )\n\
+A little help:\n\
+ XACTION : search, decode (default), add (and encode), delete (todo)\n\
+ XCAPTION : caption of tool (required if XACTIOn != decode)\n\
+ XCOMMAND : command\n\
+ XPARAM : parameter\n\
+ XINIDIR : initial directory (TeXnicCenter format)\n" )  > "/dev/stderr"
+		exit RET_MISSING_ARGUMENT
+	}
+
+	if (VERBOSE)
+		printf("Number of tools : %d\n", T_COUNT ) > "/dev/stderr"
+
+	if ( ( T_COUNT == 0 ) || ( T_HEADER == T_HEADER_A ) ) {
+		if (VERBOSE)
+			printf ( "Header format : OK\n" )  > "/dev/stderr"
+	}else{
+		if (VERBOSE)
+			printf ( "Header format : Bad\n" )  > "/dev/stderr"
+		exit RET_BAD_HEADER
+	}
+
+	# decode
+	n_decoded = 0 # number of tools was decoded
+	max_index = -1 # maximum of index
+	array_index[0] = 0 # arrays of index
+
+	for ( i=1; i <= T_COUNT; i++ ) {
+		n_decoded ++
+		if ( decode_as_array(T_A[i],Tret) ) {
+			if (VERBOSE)
+				printf ( "Tool %d : %s\n", i, decode_as_string(T_A[i]) )  > "/dev/stderr"
+			for (jdx in Tret) {
+				T_B[i,jdx] = Tret[jdx]
+				array_index[Tret[jdx]] = 1 # the index Tregt[jdx] was used
+			}
+			# the maximum of tool index
+			if ( Tret[5] > max_index )
+				max_index = Tret[5]
+		}else{
+			if (VERBOSE)
+				printf ( "(decode_as_array) failed\n"  )  > "/dev/stderr"
+			exit RET_TOOL_BAD_FORMAT
+		}
+	}
+
+	if ( n_decoded != T_COUNT ) {
+		if (VERBOSE)
+			printf ( "number of tools doesnot match\n" )  > "/dev/stderr"
+		exit RET_TOOL_BAD_FORMAT
+	}
+
+	if ( XACTION == "decode" )
+		exit 0
+
+	if ( XACTION == "search" ) {
+		ret = search_tool(XCAPTION)
+		if (VERBOSE)
+			printf ( "search for (%s) : %d\n", XCAPTION, ret ) > "/dev/stderr"
+		exit ( ret != 0 ) # found or not ?
+	}
+
+	if ( XACTION == "add" ) {
+		ret = search_tool(XCAPTION)
+		if ( ! ret ) {
+			T_COUNT++
+			ret = T_COUNT
+			T_COUNT_A = T_COUNT
+
+			# find availble index....
+			tmp_index = 0
+			while (tmp_index in array_index)
+				tmp_index ++
+		}else{
+			tmp_index = T_B[ret,5]
+		}
+		T_B[ret,1] = XCAPTION
+		T_B[ret,2] = XCOMMAND
+		T_B[ret,3] = XPARAM
+		T_B[ret,4] = XINIDIR
+		T_B[ret,4] = XINIDIR
+		T_B[ret,5] = tmp_index
+
+	} else if ( XACTION == "delete" ) {
+		IGNORE_INDEX = search_tool(XCAPTION)
+		if (VERBOSE)
+			printf ( "Delete Item : %d\n", IGNORE_INDEX) > "/dev/stderr"
+		if ( IGNORE_INDEX > 0 )
+			T_COUNT_A = T_COUNT - 1
+	}
+
+	# encoded
+	T_idx = 0
+	T_ENCODED = ""
+	tmpst = ""
+	if (VERBOSE)
+		printf "ENCODING ....\n" > "/dev/stderr"
+	for (j = 1; j <= T_COUNT; j ++) {
+		if (j != IGNORE_INDEX ) {
+			Ta[1]=T_B[j,1]
+			Ta[2]=T_B[j,2]
+			Ta[3]=T_B[j,3]
+			Ta[4]=T_B[j,4]
+			Ta[5]=T_B[j,5]
+			tmpst = encode(Ta, (j < T_COUNT) )
+			T_ENCODED = sprintf("%s%s", T_ENCODED, tmpst)
+			if (VERBOSE)
+				printf ( "Tool %d = {%s,%s,%s,%s,%d}\n", j, Ta[1],Ta[2],Ta[3],Ta[4],Ta[5] ) > "/dev/stderr"
+			if (VERBOSE >= 2)
+				printf ( "Encoded: tool [%d] : %s\n", j, tmpst ) > "/dev/stderr"
+			T_idx ++
+		}
+	}
+	# dec
+	if ( T_COUNT == 0 ) {
+		T_ENCODED = "\x00\x00"
+	}else{
+		T_ENCODED = sprintf("%c%s%s", T_COUNT_A, T_HEADER_A, T_ENCODED)
+	}
+	if (XPRINTREG == 0)
+		printf ( "%s", T_ENCODED )
+	else
+		# hex (registry strings)
+		printf ( "%s\n", build_registry_data(T_ENCODED) )
+	exit 0
+}
+
+##################################################

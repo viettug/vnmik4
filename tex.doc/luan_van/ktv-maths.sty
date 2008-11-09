@@ -1,0 +1,288 @@
+%% $Id: ktv-maths.sty 1595 2005-12-14 05:13:50Z kyanh $ %%
+% ----------------------------------------------------------------------
+%%
+%% phiªn b¶n ®Çu tiªn ®­îc viÕt ®Ó lµm luËn v¨n (04,05,06 n¨m 2001)
+%% phiªn b¶n nµy cã thÓ nãi lµ kh¸ ®ñ, cho ®Õn khi kÕt thóc luËn v¨n.
+%% ®Õn, 11, 2001, `kmath' ®­îc hoµn chØnh víi c¸c cÊu tróc if-then-else
+%% vµ ®­îc viÕt trong `kmath.dtx'
+%% §Üa cøng sau ®ã bÞ háng, to2002/08/01µn bé phiªn b¶n 1.x bÞ mÊt
+%%    v2.x: 2001/12/27 (Da Nang)
+%%    v2.z: 2002/03/26 (TK): thªm code (®o¹n th¼ng, tõ ®Õn, ...)
+%%    v2.a: 2002/03/29 (TK): thiÕt kÕ hµm gval, drval, ...
+%%    v2.b: 2002/03/30 (TK): thªm xarrow
+%%    v2.c: 2002/04/17 (TK): bá kho¶ng tr¾ng ë dßng ®Çu tiªn sau *eq*
+%%
+%% 2x == 2003/03/25,  5:27 CH
+%% 3a == 2003/07/31, 10:36 CH
+%%    removed definitions
+%%
+%%
+% ----------------------------------------------------------------------
+
+\ProvidesPackage{ktv-maths}[2006/12/06 v3.b ktv-maths for vnmik3.vnthesis]
+%\ProvidesPackage{ktv-maths}[2003/07/31 v3.a KTV, Math]
+%\PackageWarning{ktv-maths}{2003/07/31, some defs were removed.}
+
+% ----------------------------------------------------------------------
+
+\def\kmath@error#1#2{\PackageError{ktv-maths}{#1}{#2}}
+
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+
+% package writiting
+\RequirePackage{ifthen}
+
+% ----------------------------------------------------------------------
+%% c¸c tËp hîp sè thùc N, Z, Q, R, C,...
+%% 2002/08/04: remove "\ensuremath{---}"
+
+\def\NN{\mathbb{N}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\RR{\mathbb{R}}
+%\def\RRx{\overline{\mathbb{R}}}
+%\def\RRbar{\overline{\mathbb{R}}}
+\def\CC{\mathbb{C}}
+\def\realline{\RR}
+
+\providecommand{\quadquad}{\quad\quad}
+
+\newcommand{\eval}[2][]{\drval[#1](){#2}}%def
+\def\evalbig{\eval[big]}
+\def\evalbigg{\eval[bigg]}
+\def\evalBig{\eval[Big]}
+\def\evalBigg{\eval[Bigg]}
+
+% ----------------------------------------------------------------------
+%% T¹O MéT HéP §ãNG §èI T­ìNG L¹I
+% ----------------------------------------------------------------------
+
+\newboolean{check@gval}
+\newif\ifgval@delimiterokay
+
+%% chØ KH¤NG kiÓm tra c¸c dÊu ngoÆc vµo khi
+%% vµ chØ khi gi¸ trÞ tham sè #1 b»ng 0.
+\newcommand{\checkgval}[1]{%
+	\ifthenelse{\equal{#1}{0}}%
+		{\setboolean{check@gval}{false}}%
+		{\setboolean{check@gval}{true}}%
+}%checkgval
+
+%% ®Æt c¸c dÊu ngoÆc;
+%% hµm nµy cã ¶nh h­ëng cho tíi khi gäi l¹i
+\newcommand{\gvalset}[2]{%
+	\edef\gval@left{#1}%
+	\edef\gval@right{#2}}%gvalset
+
+%% kiÓm tra tÝnh hîp lÖ cña c¸c dÊu ngoÆc
+%% c¸c dÊu ngoÆc ®­îc support:
+%% (, ), [, ], {, }, |
+\newcommand{\gval@check}[1]{%
+\ifthenelse{\boolean{check@gval}}%
+	{\ifthenelse{\equal{#1}{(}\or\equal{#1}{)}%
+		\or\equal{#1}{[}\or\equal{#1}{]}%
+		\or\equal{#1}{\{}\or\equal{#1}{\}}%
+		\or\equal{#1}{|}}%
+	{\gval@delimiterokaytrue}% TRUE clause
+	{\gval@delimiterokayfalse%
+	 \kmath@error{gval@check-->bad delimiter `#1'}{CURRENTLY NO HELP:-(}%
+	}}% FALSE clause
+{\gval@delimiterokaytrue}%
+    % suppose that true in case the check was done manually
+}% gval@check
+
+%% c¸c dÊu ngoÆc tr¸i vµ ph¶i
+\def\gvalleft#1{\edef\gval@left{#1}}
+\def\gvalright#1{\edef\gval@right{#1}}
+
+%% x¶y ra nÕu ch­a ®Þnh nghÜa left, right
+\def\gval@error@undefined@delimiter{%
+	\kmath@error%
+		{gval-->bad or undefined delimiter}%
+		{You hasnot initiated the value for `gval'.^^J%
+		 To do it, let use `gvalset' before you call `gval'^^J%
+		 Note: `gvalset' affects until his next calling.}% help
+	}%\gval@error@undefined@delimiter
+
+%% \gvalsize{big}{l}{(}
+%% #1: big, Big, bigg, Bigg
+%% #2: l, r
+%% #3: delimiter
+\newcommand{\gval@size}[3]{%
+	\ifthenelse{\equal{#1}{}}%
+		{#3}%
+		{\ifgval@delimiterokay%
+			\csname#1#2\endcsname#3%
+		\else#3\fi}%
+}% gval@size
+
+%% #1	big, Big, bigg, Bigg
+%% #2	contents
+\newcommand{\gval}[2][]{%def
+	\ifx\gval@left\@undefined%
+		\gval@error@undefined@delimiter%
+		\edef\gval@left{}%
+	\else\gval@check{\gval@left}\fi%
+	\gval@size{#1}{l}{\gval@left}%
+			#2% the objet
+	\ifx\gval@right\@undefined%
+		\gval@error@undefined@delimiter%
+		\edef\gval@right{}%
+	\else\gval@check{\gval@right}\fi%
+	\gval@size{#1}{r}{\gval@right}%
+}% gval
+%
+\def\gvalbig{\gval[big]}
+\def\gvalbigg{\gval[bigg]}
+\def\gvalBig{\gval[Big]}
+\def\gvalBigg{\gval[Bigg]}
+
+%% ®¸nh dÊu trùc tiÕp vµo
+%%	\drval [big flag] {opened delimiter} {closed delimiter} {contents}
+%% nªn kiÓm tra c¸c dÊu ngoÆc
+\def\temp@left{}
+\def\temp@right{}
+\newcommand{\drval}[4][]{%
+	\edef\temp@left{\ifx\gval@left\@undefined \else\gval@left \fi}%
+	\edef\temp@right{\ifx\gval@right\@undefined \else\gval@right \fi}%
+	\gvalset{#2}{#3}%
+	\gval[#1]{#4}%
+	% restore delimiter
+	\gvalset{\temp@left}{\temp@right}%
+}% drval
+\def\drvalbig{\drval[big]}
+\def\drvalbigg{\drval[bigg]}
+\def\drvalBig{\drval[Big]}
+\def\drvalBigg{\drval[Bigg]}
+
+% ----------------------------------------------------------------------
+%% t¹o mét tËp hîp
+%% trong phiªn b¶n cò, `xset' cã tªn lµ `aset'
+%%
+\newcommand{\xset}[2][]{%def
+	\drval[#1]\{\}{#2}}%def
+\def\xsetbig{\xset[big]}
+\def\xsetbigg{\xset[bigg]}
+\def\xsetBig{\xset[Big]}
+\def\xsetBigg{\xset[Bigg]}
+
+\newcommand{\brak}[2][]{%def
+	\drval[#1][]{#2}}%def
+\def\brakbig{\brak[big]}
+\def\brakbigg{\brak[bigg]}
+\def\brakBig{\brak[Big]}
+\def\brakBigg{\brak[Bigg]}
+
+% ----------------------------------------------------------------------
+%% hµm lÊy gi¸ trÞ tuyÖt ®èi
+%%
+\newcommand{\@abs}[2][]{%
+  \csname#1l\endcsname\lvert#2\csname#1r\endcsname\rvert}%
+\def\abs#1{\lvert#1\rvert}
+\def\absbig{\@abs[big]}
+\def\absbigg{\@abs[bigg]}
+\def\absBig{\@abs[Big]}
+\def\absBigg{\@abs[Bigg]}
+
+% ----------------------------------------------------------------------
+%% hµm lÊy chuÈn cña vÐc t¬, 2002/08/05
+%%
+\newcommand{\@norm}[2]{%
+		\csname#1l\endcsname\|#2\csname#1r\endcsname\|}%def
+\def\norm#1{\left\|#1\right\|}
+\def\normbig{\@norm{big}}
+\def\normbigg{\@norm{bigg}}
+\def\normBig{\@norm{Big}}
+\def\normBigg{\@norm{Bigg}}
+
+%% c¸c hµm to¸n häc th«ng dông
+%% hµm `tan' ®· cã s½n cña LaTeX kh«ng ph¶i c¸ch viÕt cña ng­êi ViÖt Nam
+
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\cte}{cte}
+\DeclareMathOperator{\kc}{kc}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+\DeclareMathOperator{\arctg}{arctg}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Image}{Im}
+
+% 2002/08/04
+\newcommand{\cc}[2]{[#1;#2]}
+\newcommand{\vv}[2]{(#1;#2)}
+\newcommand{\cv}[2]{[#1;#2)}
+\newcommand{\vc}[2]{(#1;#2]}
+
+%% c¸c macro tiÒn ®Þnh nghÜa
+\def\ccab{\cc ab}
+\def\vvab{\vv ab}
+\def\vcab{\vc ab}
+\def\cvab{\cv ab}
+
+\def\cz#1{\cv{#1}{+\infty}}
+\def\vz#1{\vv{#1}{+\infty}}
+\def\zc#1{\vc{-\infty}{#1}}
+\def\zv#1{\vv{-\infty}{#1}}
+
+\def\ccaz{\cc a{+\infty}}
+\def\vvaz{\vv a{+\infty}}
+\def\vcaz{\vc a{+\infty}}
+\def\cvaz{\cv a{+\infty}}
+
+\def\ccza{\cc {-\infty}a}
+\def\vvza{\vv {-\infty}a}
+\def\vcza{\vc {-\infty}a}
+\def\cvza{\cv {-\infty}a}
+
+\def\cczz{\cc {-\infty}{+\infty}}
+\def\vvzz{\vv {-\infty}{+\infty}}
+\def\vczz{\vc {-\infty}{+\infty}}
+\def\cvzz{\cv {-\infty}{+\infty}}
+
+% arrows, from lyk-arrows.sty
+
+\def\x@arrow{\DOTSB\Relbar}
+\def\xlongequalsignfill@{\arrowfill@\x@arrow\Relbar\x@arrow}
+
+\providecommand{\xlongequal}[2][]{%
+	\ext@arrow 0099\xlongequalsignfill@{#1}{#2}}
+
+\def\xLongleftrightarrowfill@{%
+  \arrowfill@\Longleftarrow\Relbar\Longrightarrow}
+\providecommand{\xLongleftrightarrow}[2][]{%
+	\ext@arrow 0099\xLongleftrightarrowfill@{#1}{#2}}
+
+\def\xlongleftrightarrowfill@{%
+  \arrowfill@\longleftarrow\relbar\longrightarrow}
+\providecommand{\xlongleftrightarrow}[2][]{%
+	\ext@arrow 0099\xlongleftrightarrowfill@{#1}{#2}}
+
+\def\xLeftrightarrowfill@{\arrowfill@\Leftarrow\Relbar\Rightarrow}
+\providecommand{\xLeftrightarrow}[2][]{%
+	\ext@arrow 0099\xLeftrightarrowfill@{#1}{#2}}
+
+\def\xleftrightarrowfill@{\arrowfill@\leftarrow\relbar\rightarrow}
+\providecommand{\xleftrightarrow}[2][]{%
+	\ext@arrow 0099\xleftrightarrowfill@{#1}{#2}}
+
+\def\xLongleftarrowfill@{\arrowfill@\Longleftarrow\Relbar\Relbar}
+\providecommand{\xLongleftarrow}[2][]{%
+	\ext@arrow 0099\xLongleftarrowfill@{#1}{#2}}
+
+\def\xLongrightarrowfill@{\arrowfill@\Relbar\Relbar\Longrightarrow}
+\providecommand{\xLongrightarrow}[2][]{%
+	\ext@arrow 0099\xLongrightarrowfill@{#1}{#2}}
+
+\def\xlongleftarrowfill@{\arrowfill@\longleftarrow\relbar\relbar}
+\providecommand{\xlongleftarrow}[2][]{%
+	\ext@arrow 0099\xlongleftarrowfill@{#1}{#2}}
+
+\def\xlongrightarrowfill@{\arrowfill@\relbar\relbar\longrightarrow}
+\providecommand{\xlongrightarrow}[2][]{%
+	\ext@arrow 0099\xlongrightarrowfill@{#1}{#2}}
+
+\endinput

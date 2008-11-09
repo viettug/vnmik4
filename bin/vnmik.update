@@ -1,0 +1,39 @@
+#!bash
+
+source vnmik.configuration
+source vnmik.message.utils
+source vnmik.functions
+source vnmik.validators
+source vnmik.package.installer
+source vnmik.package.make
+source vnmik.registry.tools
+
+hello
+
+msg
+stat_msg "UPDATING"
+msg
+
+if [ ! -f $LOGDIR/VERSION ]; then
+	msg "Please install VnMiK first. Thank you!"
+	exit 1
+fi
+
+for script in $LOGDIR/z.*;
+do
+	tmp="`basename $script`"
+	pkg="${tmp:2:${#tmp}}"
+	if [ "x$pkg" != "xvnmik_test" ];
+	then
+		stat_msg "re-execute script z.$pkg"
+		source $script
+		${pkg}_install --update
+	fi
+done
+
+texmf_texhash
+
+[ -f $LOGDIR/z.vnmik_test ] && vnmik_test_install --update
+
+cleanup
+pause

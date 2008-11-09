@@ -1,0 +1,79 @@
+% =====================================================================
+\chapter{Maple Worksheet}
+\label{chap:maple}
+% =====================================================================
+
+\begin{Export}{chap.maple}
+	% export to importe later in conclu.tex
+	C¸c thñ tôc |Maple| \cite{MAPLE95}
+	®Ó tÝnh tÝch v« h­íng $<\psi_z\wp\psi_{\:z},\eta>$
+	ë \eqref{eq:psi_z.wedge.psi_:z.times.eta}
+	vµ \eqref{eq:psi_z.wedge.psi_:z.times.eta(2)}.
+\end{Export}
+
+Phôc lôc nµy tr×nh bµy thñ tôc |Maple| \cite{MAPLE95}
+®Ó tÝnh tÝch v« h­íng $<\psi_z\wp\psi_{\:z},\eta>$
+ë \eqref{eq:psi_z.wedge.psi_:z.times.eta}
+vµ \eqref{eq:psi_z.wedge.psi_:z.times.eta(2)}.
+C¸c m· nhËp vµo ch­¬ng tr×nh |Maple| ®­îc b¾t ®Çu b»ng dÊu lín h¬n
+(|>|), ®­îc ®Þnh d¹ng víi kiÓu ch÷ |typewriter|;
+chó thÝch ®­îc \emph{in nghiªng}.
+Thø tù m· nhËp vµo ®óng nh­ thø tù tr×nh bµy ë ®©y;
+c¸c dßng m· ®­îc ®¸nh sè ®Ó tiÖn theo dâi.
+
+% =====================================================================
+\itshape
+% =====================================================================
+
+% =====================================================================
+\section{C¸c thñ tôc}
+% =====================================================================
+
+Khëi ®éng l¹i |Maple|, n¹p gãi |LinearAlgebra|
+vµ x¸c ®Þnh kiÓu cho c¸c biÕn sÏ dïng. ë ®©y,
+|a|, |b| lµ c¸c h»ng sè thùc nh­ trong \eqref{eq:BLW.def};
+|rho| lµ $\rho$ trong \eqref{eq:psi.plus.eta.rep1}.
+BiÕn sè |M_z| chØ t¸c ®éng cña to¸n tö Wirtinger $\partial_z$ lªn |M|.
+BiÕn |Mx| chØ liªn hîp phøc cña ma trËn |M|.
+
+\linenumbers
+
+\begin{verbatim}
+> restart:
+> with(LinearAlgebra):
+> assume(a, real) : assume(b, real) :
+> assume(rho, real) : assume(rho_z, complex) :
+> assume(G_z, complex) : assume(Gx_z, complex) :
+\end{verbatim}
+
+\nolinenumbers
+
+% =====================================================================
+\section{Tr­êng hîp $a+b=1$}
+\label{sec:prog.+1}
+% =====================================================================
+
+Ma trËn |Omega| ®­îc cho bëi \eqref{eq:F.Omega},
+|psi| ®­îc tÝnh theo c«ng thøc |psi|~$:=\psi =F\Omega F^*$.
+Ta sö dông |U| nh­ ë \eqref{eq:U},
+cßn |B|, |C| ®­îc tÝnh nhê \eqref{eq:F.Omega}
+vµ \eqref{eq:Omega.other};
+|Bx|~$:=B^*$ chØ ma trËn liªn hîp phøc cña $B$.
+§Ó ý r»ng, ta kh«ng triÓn khai |A| theo $\rho$, $G_z$, \dots
+
+% =====================================================================
+\section{Tr­êng hîp $a+b=-1$}
+\label{sec:prog.-1}
+% =====================================================================
+
+Ta dïng c¸c biÕn sè |M2| t­¬ng øng víi |M| trong tr­êng hîp $a+b=1$.
+C¸c b­íc tÝnh to¸n hoµn toµn t­¬ng tù nh­ ë Môc~\ref{sec:prog.+1}
+vµ ta kh«ng nh¾c l¹i ë ®©y. Xem Môc~\ref{sec:a+b=-1.start} vÒ c¸ch
+tÝnh c¸ch ®¹i l­îng |A2|, |B2|, \ldots
+
+% =====================================================================
+% restore %
+\normalfont
+% =====================================================================
+
+\endinput

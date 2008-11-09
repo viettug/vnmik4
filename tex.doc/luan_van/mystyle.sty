@@ -1,0 +1,200 @@
+% c¸c gãi sÏ dïng
+% h·y bá ®i ®äan <DELTE_ME> ... </DELETE_ME>
+
+% =====================================================================
+
+
+\RequirePackage[tcvn]{vietnam}
+\RequirePackage{epsf,graphicx}
+\RequirePackage{amsmath,amsfonts}
+\RequirePackage{geometry}
+\RequirePackage{setspace}
+\RequirePackage{biblatex}
+\RequirePackage{alltt}
+\RequirePackage{pifont}
+\RequirePackage{array} % extending tabular @ `abbr.tex'
+\RequirePackage{lineno}
+\RequirePackage{ifpdf}
+\RequirePackage{lscape}
+\RequirePackage{verbatim}
+\RequirePackage{calc,ifthen} % Description env.
+\RequirePackage{url} % url in biblatex
+\RequirePackage{ntheorem}
+
+\RequirePackage{ktv-maths}
+\RequirePackage{shortvrb}
+
+
+
+
+
+
+
+
+% =====================================================================
+% <CHANGE_ME>
+% =====================================================================
+
+\def\ImagePathPrefix{./hinh_anh}
+\IfFileExists{iprefix.cfg}{\input{iprefix.cfg}}{}
+
+% =====================================================================
+% </CHANGE_ME>
+% =====================================================================
+
+
+
+
+
+
+
+
+
+% =====================================================================
+% <DELETE_ME>
+% =====================================================================
+
+
+% =====================================================================
+% operators %
+
+\DeclareMathOperator{\Herm}{Herm} % Hermitian Matrices
+\DeclareMathOperator{\SL}{SL} % Special Lie Sub Group
+\let\Re\relax % ignore the former
+\DeclareMathOperator{\Re}{Re}
+\let\log\ln
+
+% =====================================================================
+% definitions %
+
+\let\:\overline % yes, i love this \:
+
+% =====================================================================
+% spaces %
+
+\def\xr4{\mathbb{R}^4}
+\def\xh3{\mathbb{H}^3}
+\def\xl4{\mathbb{L}^4}
+\def\xs31{\mathbb{S}_1^3}
+\def\xn3{\mathbb{N}^3_+}
+\def\xce{\:{\mathbb{C}}}
+\def\xboundary2\infty{\mathbb S^2_\infty}
+\def\xbig<#1,#2>{\bigl\langle#1,#2\bigr\rangle}
+
+% =====================================================================
+% abbr. %
+
+\def\setm{\textbackslash} % forgotten :P
+\def\setm{\setminus}
+\def\bj{Bj\"orling}
+\def\blwab{$BLW^a_b$}
+\def\xmatrix[#1,#2,#3,#4]{%
+	\begin{bmatrix}
+	#1&#2\\#3&#4
+	\end{bmatrix}}
+\def\wp{\wedge}
+
+\MakeShortVerb{|} % to be removd ;)
+
+
+% =====================================================================
+% </DELETE_ME>
+% =====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ®õng nªn thay ®æi phÇn d­íi ®©y %
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% =====================================================================
+% Descriptiont env., used in chapter0
+
+\def\Descriptionlabel#1{\textsf{#1:}}
+
+\newenvironment{Description}
+	{\begin{list}{}{%
+		\let\makelabel\Descriptionlabel% 
+		\ifmain
+			\setlength\labelwidth{15pt}%
+			\setlength\leftmargin{\labelwidth+\labelsep}%
+			\setlength\labelwidth{1em}%
+		\else
+			\setlength\labelwidth{1em}%
+			\setlength\leftmargin{\labelwidth+\labelsep}%
+		\fi%
+	}}{\end{list}}
+
+% =====================================================================
+% page style
+
+% i think that I like amstex than amslatex,
+% i think that I like tex than latex
+
+% my own page style without header, without footer
+% it is very very clean :)
+
+\let\old@ps@plain\ps@plain
+
+\newif\ifappendix \appendixfalse % in appendix ?
+\let\oldappendix\appendix
+\def\appendix{%
+	\addtocontents{toc}{\string\appendixtrue}%
+	\appendixtrue%
+	\oldappendix%
+}
+
+\def\ps@mypagestyle{%
+	\old@ps@plain%
+	\ifdraft
+		\gdef\@oddfoot{%
+			\hfil \fbox{%
+			\texttt{B¶n th¶o sè \draftversion},
+			\textit{ngµy \the\day/\the\month/\the\year},
+			trang \thepage}}%
+	\else
+		\ifappendix
+			\gdef\@oddfoot{\hfil \texttt{P\thepage}\hfil}
+		\else
+			\gdef\@oddfoot{%
+				\hfil%
+					\texttt{\thepage}%
+				\hfil%
+			}%
+		\fi%
+	\fi%
+}
+% completely ignore the standard plain style
+\let\ps@plain\ps@mypagestyle
+
+% =====================================================================
+
+\endinput

@@ -1,0 +1,86 @@
+% =====================================================================
+\section{Ph­¬ng tr×nh Liouville}
+\label{sec:L.basic}
+% =====================================================================
+
+Môc nµy tr×nh bµy vÒ ph­¬ng tr×nh Liouville
+vµ bµi to¸n Cauchy cña ph­¬ng tr×nh ®ã.
+C¸c chøng minh chi tiÕt cã trong \cite{GMM1}, \cite{LIOUVILLE}.
+
+\bigskip
+
+Cho miÒn ph¼ng $U\subset\CC$ vµ h»ng sè thùc $c$.
+\emph{Ph­¬ng tr×nh Liouville} cã d¹ng
+\begin{equation}
+\label{eq:L.def}
+(\log\phi)_{z\:z} = -\frac c2\phi,
+\end{equation}
+cã thÓ ®­îc xem nh­ ph­¬ng tr×nh vi ph©n phøc.
+NÕu $ds^2 =\phi\abs{dz}^2$ lµ |metric| Riemann trªn $U$
+th× $\phi$ tháa m·n \eqref{eq:L.def} khi vµ chØ khi
+$ds^2$ cã ®é cong h»ng $c$.
+(Cã thÓ thÊy ®­îc mèi liªn hÖ nµy tõ c«ng thøc biÓu diÔn ®é cong $K$
+cña $U$ theo hÖ sè b¶o gi¸c cña |metric| trªn $U$;
+xem thªm trong \cite{FUJIMORI}.)
+
+\medskip
+Khi gi¶i Bµi to¸n \bj\ ta sÏ ®i ®Õn bµi to¸n Cauchy cho
+ph­¬ng tr×nh Liouville
+\begin{equation}
+\label{eq:L.cauchy}
+\left\{
+	\begin{aligned}
+	(\log\phi)_{z\:z} &= -\frac c2\phi, \\
+	\phi(s,0) &= a(s),\\
+	\phi_z(s,0) &= b(s).
+	\end{aligned}
+\right.
+\end{equation}
+ë ®©y, $a$ lµ hµm gi¶i tÝch thùc, kh«ng ©m,
+vµ $b(s)$ lµ hµm gi¶i tÝch phøc sao cho
+\begin{equation}
+	2\Re\xset{b(s)} = a'(s).
+\end{equation}
+
+Ký hiÖu $\xset{f,z}$ lµ \emph{®¹o hµm Schwarz} nh­ sau
+\begin{equation}
+\xset{f,z}
+	= \evalbigg{\frac{f''}{f'}}' 
+		- \frac 12\evalbigg{\frac {f''}{f'}}^2,
+		\qquad \evalbigg{{}'=\frac d{dz}}.
+\end{equation}
+Ta còng cã ®Þnh nghÜa $\xset{f,s}$ t­¬ng tù
+cho hµm thùc $f$ vµ biÕn thùc $s$.
+
+\begin{dinhly}[\null{\xcite[Theorem 1][]{GMM1}}]
+\label{dly:GMM1.1}
+\addtheoremline*{ghost}{Bµi to¸n Cauchy cña ph­¬ng tr×nh Liouville ($c\not=0$)}
+	Cho $c\not=0$ vµ $T(s):I\to\CC$ lµ nghiÖm bÊt kú cña ph­¬ng tr×nh
+	vi ph©n $\xset{T,s}=\Upsilon(s)$, víi
+	\begin{equation}
+	2\Upsilon(s)
+		= 2\evalbigg{\frac{b(s)}{a(s)}}'
+			- \evalbigg{\frac{b(s)}{a(s)}}^2
+			+ c\,a(s),
+	\end{equation}
+	vµ ®Þnh nghÜa
+	\begin{equation}
+	\:{R(s)}
+		= \frac 1c\,
+			\frac
+			{T''(s) - \xset{b(s)/a(s)}T'(s)}
+			{2T'(s)^2 - T(s) T''(s) + \xset{b(s)/a(s)}T(s)T'(s)}.
+	\end{equation}
+	Ký hiÖu $T(z)$ vµ $R(z)$ lÇn l­ît lµ c¸c th¸c triÓn ph©n h×nh cña $T(s)$
+	vµ $R(s)$ trªn tËp hîp më $D\subset\CC$ chøa $I$. Khi ®ã,
+	\begin{equation}
+		\phi(s,t) = \frac{4T_z\:{R_z}}{(1+cT\:R)^2}
+	\end{equation}
+	lµ nghiÖm duy nhÊt cña bµi to¸n Cauchy \eqref{eq:L.cauchy}.
+\end{dinhly}
+
+\begin{chungminh}
+Néi dung cña chøng minh
+\end{chungminh}
+
+\endinput

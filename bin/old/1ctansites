@@ -1,0 +1,121 @@
+#
+# rearrange as you want. See the list of site below
+# remember to append the suffix the resulte.
+# 
+
+export CTANSITES=\
+"\
+ftp://ftp.lab.kdd.co.jp/CTAN \
+ftp://ftp.nara.wide.ad.jp/pub/TeX/CTAN \
+ftp://ftp.riken.go.jp/pub/tex-archive \
+ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN \
+ftp://ftp.yz.yamagata-u.ac.jp/pub/CTAN \
+ftp://ftp.kaist.ac.kr/tex-archive \
+ftp://ftp.kreonet.re.kr/pub/CTAN \
+ftp://ftp.ktug.or.kr/tex-archive \
+ftp://ctan.unsw.edu.au/tex-archive \
+ftp://mirror.aarnet.edu.au/pub/tex-archive \
+ftp://mirror.pacific.net.au/CTAN \
+ftp://ftp.ctex.org/CTAN \
+ftp://ftp.comp.hkbu.edu.hk/pub/TeX/CTAN \
+ftp://komo.padinet.com/CTAN \
+ftp://ctan.cdpa.nsysu.edu.tw/Unix/TeX/CTAN \
+ftp://ftp.ccu.edu.tw/pub/tex \
+"
+
+# mirrors.localhost.net.ar (Argentina)    /pub/mirrors/ctan
+# ctan.unsw.edu.au (NSW, Australia)       /tex-archive
+# mirror.aarnet.edu.au (QLD, Australia)   /pub/tex-archive
+# mirror.pacific.net.au (Sydney, Australia) /CTAN
+# ftp.univie.ac.at (Austria)              /packages/tex
+# gd.tuwien.ac.at (Austria)               /publishing/tex/CTAN
+# 
+# ftp.belnet.be (Belgium)                 /packages/ctan
+# 
+# ftp.das.ufsc.br (Brazil)                /pub/ctan
+# ftp.linorg.usp.br (Brazil)              /CTAN
+# 
+# ctan.cms.math.ca (Canada)               /tex-archive
+# ctan.dcc.uchile.cl (Chile)              /pub/lang/ctan/tex-archive
+# ftp.ctex.org (China)                    /CTAN
+# itchy.emate.ucr.ac.cr (Costa Rica)      /pub/ctan
+# ftp.cstug.cz (The Czech Republic)       /pub/tex/CTAN
+# 
+# mirrors.dotsrc.org (Denmark)            /ctan
+# tug.org (Denmark)                       /tex-archive
+# 
+# ftp.fu-berlin.de (Germany)              /tex/CTAN
+# ftp.gwdg.de (Germany)                   /pub/dante
+# ftp.join.uni-muenster.de (Germany)      /pub/software/CTAN
+# ftp.mpi-sb.mpg.de (Germany)             /pub/tex/mirror/ftp.dante.de/pub/tex
+# ftp.rrze.uni-erlangen.de (Germany)      /pub/tex/ctan
+# ftp.tu-chemnitz.de (Germany)            /pub/tex
+# 
+# ftp.linux.ee (Estonia)                  /pub/tex-archive
+# 
+# ftp.gui.uva.es (Spain)                  /sites/ctan.org
+# 
+# ftp.funet.fi (Finland)                  /pub/TeX/CTAN
+# ftp.inria.fr (France)                   /pub/TeX/CTAN
+# ftp.uvsq.fr (France)                    /pub/TeX/CTAN
+# mirrors.ircam.fr (France)               /pub/CTAN
+# 
+# ftp.ntua.gr (Greece)                    /mirror/ctan
+# 
+# ftp.comp.hkbu.edu.hk (Hong Kong)        /pub/TeX/CTAN
+# 
+# mirror.gnowledge.org (India) (http only) /ctan
+# komo.padinet.com (Indonesia)            /CTAN
+# ftp.heanet.ie (Ireland)                 /pub/ctan/tex
+# cis.uniRoma2.it (Italy)                 /TeX
+# 
+# ftp.lab.kdd.co.jp (Japan)               /CTAN
+# ftp.nara.wide.ad.jp (Japan)             /pub/TeX/CTAN
+# ftp.riken.go.jp (Japan)                 /pub/tex-archive
+# ftp.u-aizu.ac.jp (Japan)                /pub/tex/CTAN
+# ftp.yz.yamagata-u.ac.jp (Japan)         /pub/CTAN
+# 
+# ftp.kaist.ac.kr (Korea)                 /tex-archive
+# ftp.kreonet.re.kr (Korea)               /pub/CTAN
+# ftp.ktug.or.kr (Korea)                  /tex-archive
+# 
+# tezcatl.fciencias.unam.mx (Mexiko)      /tex-archive
+# 
+# ftp.ntg.nl (The Netherlands)            /mirror/tex-archive
+# ctan.unik.no (Norway)                   /tex-archive
+# 
+# elena.aut.ac.nz (New Zealand)           /pub/CTAN
+# 
+# ftp.gust.org.pl (Poland)                /TeX
+# mirror.icis.pcz.pl (Poland)             /tex-archive
+# sunsite.icm.edu.pl (Poland)             /pub/CTAN
+# 
+# ftp.di.uminho.pt (Portugal)             /pub/ctan
+# ftp.eq.uc.pt (Portugal)                 /pub/software/TeX
+# ftp.ist.utl.pt (Portugal)               /pub/ctan
+# neacm.fe.up.pt (Portugal)               /pub/CTAN
+# 
+# ftp.iasi.roedu.net (Romania)            /pub/mirrors/ftp.ctan.org
+# ftp.chg.ru (Russia)                     /pub/TeX/CTAN
+# tex.ihep.su (Russia) (http only)        /pub/TeX/CTAN
+# 
+# ftp.nus.edu.sg (Singapore)              /pub/docs/TeX
+# sunsite.uakom.sk (Slovak Republic)      /pub/mirrors/CTAN
+# ftp.sun.ac.za (South Africa)            /CTAN
+# ftp.rediris.es (Spain)                  /mirror/tex-archive
+# sunsite.cnlab-switch.ch (Switzerland)   /ftp/mirror/tex
+# 
+# ctan.cdpa.nsysu.edu.tw (Taiwan)         /Unix/TeX/CTAN
+# ftp.ccu.edu.tw (Taiwan)                 /pub/tex
+# sunsite.bilkent.edu.tr (Turkey)         /pub/tex/ctan
+# 
+# ctan.math.utah.edu (Utah, USA)          /tex-archive
+# ftp.cise.ufl.edu (Florida, USA)         /pub/mirrors/tex-archive
+# ftp.duke.edu (North Carolina, USA)      /pub/tex-archive
+# ftp.math.purdue.edu (Indiana, USA)      /mirrors/ctan.org
+# ftp.sunsite.utk.edu (Tennessee, USA)    /pub/CTAN
+# ibiblio.org (North Carolina, USA)	  /pub/packages/TeX
+# indian.cse.msu.edu (Michigan, USA)      /pub/mirrors/CTAN
+# mirror.sg.depaul.edu (Illinois, USA)    /pub/TeX/CTAN
+# carroll.aset.psu.edu (Pennsylvania, USA)	/pub/CTAN
+ 

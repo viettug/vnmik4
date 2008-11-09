@@ -1,0 +1,42 @@
+#!bash
+
+##############################################################################
+## USERS' SETTINGS
+##############################################################################
+
+export IGNORE_DOC_SOURCE=1 # ignore texmf/doc and texmf/source
+
+##############################################################################
+## You shouldNOT change the following lines as these lines alter the whole system
+##############################################################################
+
+export MINSIZE=200 # minimum size
+export VERSION=4.0.0 # current vnmik version
+export MAJOR_VERSION=4 # the major version
+export VNMIKID=3141 # vnmik id; another way to save vnmik version
+# export VNMIKPW= # password to extract 7z archives
+export MIKTEX_VERSION='MikTeX-2.7' # miktex version to be used
+
+##############################################################################
+# DoNOT change anything below PLEASE
+##############################################################################
+
+# !!! hey DONOT change PREFIX !!!!
+# * texmf_config/miktex/editors.ini
+
+PREFIX=`pwd`
+export PREFIX="/cygdrive/${PREFIX:10:1}/vnmik"
+export PREFIX_WIN="`cygpath -w $PREFIX`"
+export PDFREADER=
+export LOGDIR=$PREFIX/vnmik.log
+export LOGFILE=$LOGDIR/log.all
+export PKGDIR=$PREFIX/vnmik.package
+export STAT_PREFIX='> '
+export PKG_SUFFIX=".$MAJOR_VERSION"
+
+export VNMIKBIN_PATH=
+export USERHOME="`cygpath -u "$USERPROFILE" 2>/dev/null`"
+export ISPOWERED=0
+export GET_ME_RUN=0
+
+# end of file

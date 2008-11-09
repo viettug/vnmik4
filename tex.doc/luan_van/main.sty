@@ -1,0 +1,303 @@
+% =====================================================================
+
+\newif\ifdraft \drafttrue % draft version ?
+\newif\ifmain \maintrue % main version ?
+
+% =====================================================================
+
+\RequirePackage{mystyle}
+
+\IfFileExists{\jobname.cfg}{\input{\jobname.cfg}}{}
+
+% =====================================================================
+% to be a hacker ;) %
+
+\makeatletter
+
+% redefine \tableofcontents of report.cls
+% so that it can add a `toc' line to the result __
+\def\tableofcontents{%
+	{%\ttfamily
+	\chapter*{\contentsname}%
+	\addcontentsline{toc}{chapter}{\contentsname}%
+	\@starttoc{toc}%
+	\appendixfalse% we change \ifappendix in \appendix
+	}%
+}
+\makeatother
+
+% =====================================================================
+% to be a hacker ;) %
+
+\makeatletter
+
+% see lyk-report.sty
+% recommend: use fancy package (see LaTeX Companion)
+
+% TODO: use the very fancy sample from D. Knuth books ;)
+
+% see a use in the body of document %
+\def\MagicStarTocHook{%
+	\ifappendix
+		\appendixname%
+	\else
+		\chaptername%
+	\fi%
+	\space%
+}
+
+% internally %
+
+\newif\iflyk@in@chapter@
+\def\lykW@pagename{\textit{trang}}
+\def\lykW@point@out{.0}
+\let\lyk@starttoc\@starttoc
+\let\lyk@l@chapter\l@chapter
+\let\lyk@numberline\numberline
+\def\lyk@eat@point#1.#2{.0}
+
+\def\numberline#1{%
+	\iflyk@in@chapter@\relax%
+		\MagicStarTocHook\lyk@numberline{#1:}
+	\else
+		\edef\lyk@tmp{\lyk@eat@point#1.0}%
+		\ifx\lykW@point@out\lyk@tmp\relax%
+			\lyk@numberline{#1:}%
+		\else%
+			\lyk@numberline{#1}%
+		\fi%
+		\let\lyk@tmp\relax%
+	\fi%
+}
+
+\def\@starttoc#1{%
+	\hfill\lykW@pagename\par%
+	\lyk@starttoc{#1}%
+}
+\def\l@chapter#1#2{%
+	\lyk@in@chapter@true%
+	\ifappendix
+		\lyk@l@chapter{#1}{P#2}%
+	\else
+		\lyk@l@chapter{#1}{#2}%
+	\fi%
+	\lyk@in@chapter@false%
+}
+
+\countdef\counter=255
+\def\diamondleaders{% from texbook.tex
+	\global\advance\counter by 1\relax%
+	\ifodd\counter
+		\kern-10pt%
+	\fi%
+	\leaders\hbox to 20pt{%
+		\ifodd\counter
+			\kern13pt%
+		\else
+			\kern3pt%
+		\fi%
+    .\hss}%
+}
+
+\def\@dottedtocline#1#2#3#4#5{%
+	\ifnum #1>\c@tocdepth \else%
+		\vskip \z@ \@plus .2\p@%
+		{%
+			\leftskip#2\relax%
+			\rightskip\@tocrmarg%
+			\parfillskip -\rightskip\parindent#2\relax%
+			\@afterindenttrue\interlinepenalty%
+			\@M\leavevmode\@tempdima#3\relax%
+			\advance\leftskip\@tempdima\null%
+			\nobreak%
+			\hskip-\leftskip{#4}\nobreak%
+			\diamondleaders\hfill%
+			\nobreak%
+			{\ifappendix P#5\else #5\fi}% the page
+			\par%
+		}%
+	\fi%
+}
+
+\makeatother
+
+% =====================================================================
+% export stuff %
+
+\makeatletter
+
+\newwrite\fexport
+
+\ifmain
+	\def\ImportPrefix{Amain}
+	\def\ExportPrefix{Amain}
+\else
+	\def\ImportPrefix{Asum}
+	\def\ExportPrefix{Asum}
+\fi
+
+% base engine for Export env.
+\def\foo#1{%
+	\immediate\openout\fexport=\ExportPrefix.W#1%
+	\let\do\@makeother\dospecials\catcode`\^^M\active%
+	\def\verbatim@processline{%
+		\immediate\write\fexport{\the\verbatim@line}}%
+	\verbatim@start%
+}
+
+% export stuff to the file #1
+\newenvironment{Export}[1]%
+{%
+	\@bsphack%
+	\begingroup%
+	\foo{#1}%
+}{%
+	\verbatim@finish% 
+	\endgroup%
+	\@esphack%
+	\immediate\closeout\fexport%
+}
+
+% import stuff from the file #1
+\def\Import#1{%
+	\IfFileExists{\ImportPrefix.W#1}%
+	{\input{\ImportPrefix.W#1}}%\unskip%
+	{[import = \ImportPrefix.W#1]}%
+}
+
+\makeatother
+
+% =====================================================================
+% export and input immediately the result ;)
+
+% this is a better alternative,%
+% use fancyvrb package ... FAILED:
+% the output file by fancyvrb was encoded strangesly :(
+
+\makeatletter
+
+\newwrite\fexportI
+\newcount\fexportcnt
+\fexportcnt=0
+
+\newwrite\fexportIlist
+
+\ifmain
+	\def\ImportIPrefix{Amain}
+	\def\ExportIPrefix{Amain}
+\else
+	\def\ImportIPrefix{Asum}
+	\def\ExportIPrefix{Asum}
+\fi
+
+\immediate\openout\fexportIlist=\ExportIPrefix.WWW
+\AtEndDocument{\immediate\closeout\fexportIlist}
+
+\def\fooI{%
+	\global\advance\fexportcnt by 1 %
+	% write to list
+	\immediate\write\fexportIlist{\string\input{\ExportIPrefix.W\the\fexportcnt}}%
+	%
+	\immediate\openout\fexportI=\ExportIPrefix.W\the\fexportcnt%
+	\immediate\write\fexportI{\string\makeatletter}%
+	\immediate\write\fexportI{\string\c@chapter=\the\c@chapter}%
+	\immediate\write\fexportI{\string\c@section=\the\c@section}%
+	\immediate\write\fexportI{\string\c@subsection=\the\c@subsection}%
+	\immediate\write\fexportI{\string\c@equation=\the\c@equation}%
+	\foomycounters%
+	\immediate\write\fexportI{\string\makeatother}%
+	%
+	\let\do\@makeother\dospecials\catcode`\^^M\active%
+	\def\verbatim@processline{%
+		\immediate\write\fexportI{\the\verbatim@line}}%
+	\verbatim@start%
+}
+
+\newenvironment{ExportIOnly}{%
+	\@bsphack%
+	\begingroup%
+	\fooI%
+}{%
+	\verbatim@finish%
+	\endgroup%
+	\@esphack%
+	\immediate\closeout\fexportI%
+}
+
+\newenvironment{ExportI}{%
+	\@bsphack%
+	\begingroup%
+	\fooI%
+}{%
+	\verbatim@finish%
+	\endgroup%
+	\@esphack%
+	\immediate\closeout\fexportI%
+	\ImportI{\the\fexportcnt}%
+}
+
+\def\ImportI#1{%
+	\IfFileExists{\ImportIPrefix.W#1}
+	{\input{\ImportIPrefix.W#1}}%
+	{[import = \ImportIPrefix.W#1]}%
+}
+
+\makeatother
+
+% =====================================================================
+% showkeys alternative %
+
+% i hate showkeys;
+% i want a list of \labels instead %
+% of course i like it \ifdraft %
+
+% FIXED: if \label is defined @ the first time %
+% the output will be cause errors (at the end of typesetting) %
+
+\ifdraft
+	\newwrite\flabel
+	\immediate\openout\flabel=\jobname.lbl
+	\AtEndDocument{%
+		\immediate\write\flabel{\string\endinput}
+		\immediate\closeout\flabel
+		\input{\jobname.lbl}
+	}
+	\immediate\write\flabel{\string\chapter{List of labels}}
+
+	% this alters only normal \label %
+	% see amsmath package for details %
+
+	\makeatletter
+	\def\makerefstr#1{
+		\expandafter\ifx\csname r@#1\endcsname\relax\relax
+			\immediate\write\flabel{%
+				ref=??, label=\string\verb!#1!, page=??, \string\par}
+		\else
+			\immediate\write\flabel{%
+				ref=\ref{#1}, label=\string\verb!#1!, page=\pageref{#1}, \string\par}
+		\fi
+	}
+	\makeatother
+
+	\let\oldlabel\label
+%	\csname r@#1\endcsname
+	\def\label#1{%
+		\oldlabel{#1}%
+		\makerefstr{#1}%
+	}
+	
+	% hack also amsmath's \label %
+	\makeatletter
+	\let\oldlabel@in@display\label@in@display
+
+	\def\label@in@display#1{%
+		\oldlabel@in@display{#1}%
+		\makerefstr{#1}%
+	}
+	\makeatother
+
+\fi
+
+% =====================================================================
+
+\endinput

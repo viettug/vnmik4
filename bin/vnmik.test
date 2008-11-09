@@ -1,0 +1,44 @@
+#!bash
+
+# this file is part of VnMiK 4.0.0
+
+msg()
+{
+	echo -e ">> $@"
+}
+
+xtest()
+{
+	msg "testing function ($1)"
+	$1
+	msg "return code: $?"
+}
+
+
+msg "loading function libraries"
+
+source vnmik.configuration
+source vnmik.message.utils
+source vnmik.functions
+source vnmik.validators
+source vnmik.package.installer
+source vnmik.registry.tools
+
+stat_date
+
+# msg "installing a package"
+# install_package /cygdrive/c/vnmik/vnmik.packages/bin.spdf.4
+
+xtest hello
+xtest check_PreviousInstance
+xtest check_PreviousVersion
+xtest check_RWVnMik
+xtest install_version
+xtest check_PDFReader
+xtest check_UserHome
+xtest check_RWRegistryDatabase
+xtest check_PowerPrivilege
+xtest check_PATHinRegistry
+xtest registry_backup
+
+cleanup
