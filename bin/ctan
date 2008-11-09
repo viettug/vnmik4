@@ -198,7 +198,7 @@ check_first_time()
 
 ctan_search()
 {
-	check_fist_time
+	check_first_time
 	if [[ "x$1" == "x-file" ]]; then
 		shift
 		grep $* $DESTDIR/files.txt | grep -v obsolete
