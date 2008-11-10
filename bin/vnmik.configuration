@@ -33,7 +33,7 @@ export LOGFILE=$LOGDIR/log.all
 export PKGDIR=$PREFIX/vnmik.package
 export STAT_PREFIX='> '
 export PKG_SUFFIX=".$MAJOR_VERSION"
-
+export VNMIK_REPO=http://download.tuxfamily.org/viettug/vnmik/repos/
 export VNMIKBIN_PATH=
 export USERHOME="`cygpath -u "$USERPROFILE" 2>/dev/null`"
 export ISPOWERED=0
