@@ -114,7 +114,7 @@ texmf_texhash() # update miktex databased and make fonts maps
 		for option in "--dump --mklinks" "--mkmaps" "--update-fndb"; do		
 			stat_log "running: initexmf --verbose $option"
 			$TEXHASH --verbose $option	|| stat_log "return status: $?"
-		done	
+		done
 	fi
 }
 
