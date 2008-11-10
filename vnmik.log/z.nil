@@ -1,0 +1,11 @@
+nil_install() {
+	stat_log "nil_install: do nothing"
+}
+
+nil_update() {
+	nil_install
+}
+
+nil_test() {
+	nil_install
+}

@@ -1,0 +1,44 @@
+# TODO: check associations =1 for vnmik HARD_DISK Installatino
+vnmik_update() {
+	local miktex_path=/HKCU/software/miktex.org/miktex/2.7
+	install_PATH $PREFIX/tex.bin
+	
+	# core paths
+	registry_add \
+		--string "`path_to_win $PREFIX/tex.base`" \
+		$miktex_path/core/install
+	
+	registry_add \
+		--skip-subkey-check \
+		--string "`path_to_win $PREFIX/tex.base`;`path_to_win $PREFIX/tex.user`" \
+		$miktex_path/core/roots
+	registry_add \
+		--skip-subkey-check \
+		--string "`path_to_win $PREFIX/tex.config`" \
+		$miktex_path/core/userconfig
+	registry_add \
+		--skip-subkey-check \
+		--string "`path_to_win $PREFIX/tex.var`" \
+		$miktex_path/core/userdata
+	
+	# Yap
+	registry_add \
+		--dword 0 \
+		"$miktex_path/yap/settings/check associations"
+	
+	# mpm
+	registry_add \
+		--string "ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/systems/win32/miktex/tm/packages/" \
+		$miktex_path/mpm/RemoteRepository
+	registry_add \
+		--skip-subkey-check \
+		--string "2" \
+		$miktex_path/mpm/autoinstall
+}
+
+vnmik_install() {
+	vnmik_update
+}
+
+vnmik_test() {
+}
