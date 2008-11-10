@@ -1,0 +1,49 @@
+#!bash
+
+source vnmik.configuration
+source vnmik.message.utils
+source vnmik.functions
+source vnmik.validators
+source vnmik.package.installer
+source vnmik.package.make
+source vnmik.registry.tools
+
+hello
+
+msg
+stat_msg "_.: INSTALLING NEW PACKAGES :._"
+msg
+
+if [ ! -f $LOGDIR/VERSION ]; then
+	cleanup
+	stat_fail "Please install VnMiK first. Thank you!"
+	exit 1
+fi
+
+check_PreviousInstance
+check_PreviousVersion
+check_OS
+check_RWVnMik
+check_DiskSpace 10
+
+check_RWRegistryDatabase
+check_PATHinRegistry
+
+check_PDFReader
+
+check_UserHome
+check_RegeditProgram
+check_PowerPrivilege
+
+if [ ! -f $LOGDIR/z.vnmik$MAJOR_VERSION ]; then
+	cleanup
+	stat_fail "cannot locate log/z.vnmik$MAJOR_VERSION"
+	exit 1
+fi
+
+install_package $PKGDIR/*$PKG_SUFFIX
+
+texmf_texhash
+
+cleanup
+pause
