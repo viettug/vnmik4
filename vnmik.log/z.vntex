@@ -5,11 +5,11 @@ vntex_add_line() {
 	local newline="$*"
 	local ret=0
 	if [ -z "$newline" ]; then
-		stat_log "($FUNCNAM): missing parameters"
+		stat_log "($FUNCNAME): missing parameters"
 	else
-		stat_log "adding $newline to udpmap.cfg"
 		grep -q "^$newline" $updmap
 		if [ $? -ge 1 ]; then
+			stat_log "adding $newline to udpmap.cfg"
 			ret=1
 			echo "$newline" >> $updmap
 		else
