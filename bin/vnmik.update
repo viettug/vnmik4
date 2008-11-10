@@ -15,9 +15,27 @@ stat_msg "_.: UPDATING :._"
 msg
 
 if [ ! -f $LOGDIR/VERSION ]; then
-	msg "Please install VnMiK first. Thank you!"
+	cleanup
+	stat_fail "Please install VnMiK first. Thank you!"
 	exit 1
 fi
+
+check_PreviousInstance
+check_PreviousVersion
+check_OS
+check_RWVnMik
+check_DiskSpace 10
+
+check_RWRegistryDatabase
+check_PATHinRegistry
+
+check_PDFReader
+
+check_UserHome
+check_RegeditProgram
+check_PowerPrivilege
+
+registry_backup
 
 if [ ! -f $LOGDIR/z.vnmik$MAJOR_VERSION ]; then
 	cleanup
