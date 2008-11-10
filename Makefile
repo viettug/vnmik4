@@ -12,7 +12,7 @@ copy:
 
 copy_hard:
 	@cp -fv bin/* $(rcdir)/bin/
-	@cp -rfv bin/{dll,lib}s $(rcdri)/bin/
+	@cp -rfv bin/{dll,lib}s $(rcdir)/bin/
 	
 cleanup_before:
 	@rm -rfv $(rcdir)/tex.doc/{tex,vntex}
