@@ -1,6 +1,6 @@
 #!bash
 
-vnmik_test_install()
+vnmik_test_test()
 {
 	local testdir=$PREFIX/tex.doc/test
 	local doc=vnmik_test
@@ -14,4 +14,12 @@ vnmik_test_install()
 	stat_msg "see $testdir/*log for errors details"
 	stat_msg "starting YAP..."
 	yap ${doc}.dvi
+}
+
+vnmik_test_update() {
+	stat_log "($FUNCNAME) donothing"
+}
+
+vnmik_test_install() {
+	vnmik_test_update
 }
