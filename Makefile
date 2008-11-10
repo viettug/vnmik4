@@ -11,7 +11,8 @@ copy:
 	@cp -fv tex.doc/vntex/*.pdf $(rcdir)/tex.doc/vntex/
 
 copy_hard:
-	@cp -rfv bin/* $(rcdir)/bin/
+	@cp -fv bin/* $(rcdir)/bin/
+	@cp -rfv bin/{dll,lib}s $(rcdri)/bin/
 	
 cleanup_before:
 	@rm -rfv $(rcdir)/tex.doc/{tex,vntex}
