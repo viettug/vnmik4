@@ -11,7 +11,7 @@ source vnmik.registry.tools
 hello
 
 msg
-stat_msg "UPDATING"
+stat_msg "_.: UPDATING :._"
 msg
 
 if [ ! -f $LOGDIR/VERSION ]; then
@@ -19,24 +19,31 @@ if [ ! -f $LOGDIR/VERSION ]; then
 	exit 1
 fi
 
-for script in `ls $LOGDIR/z.* |grep -v vnmik`;
+if [ ! -f $LOGDIR/z.vnmik$MAJOR_VERSION ]; then
+	cleanup
+	stat_fail "cannot locate log/z.vnmik$MAJOR_VERSION"
+	exit 1
+fi
+
+for script in `ls $LOGDIR/z.*`;
 do
 	tmp="`basename $script`"
 	pkg="${tmp:2:${#tmp}}"
-	if [ "x$pkg" != "xvnmik_test" ];
-	then
-		stat_msg "re-execute script z.$pkg"
-		source $script
-		${pkg}_install --update
-	fi
+	stat_msg "execute update-script z.$pkg"
+	source $script
+	${pkg}_update
 done
 
 texmf_texhash
 
-[ -f $LOGDIR/z.vnmik_test ] && \
-	vnmik_test_install --update
-[ -f $LOGDIR/z.vnmik$MAJOR_VERSION] && \
-	vnmik_install --update
+for script in `ls $LOGDIR/z.*`;
+do
+	tmp="`basename $script`"
+	pkg="${tmp:2:${#tmp}}"
+	stat_msg "testing the system using z.$pkg"
+	source $script
+	${pkg}_test
+done
 	
 cleanup
 pause
