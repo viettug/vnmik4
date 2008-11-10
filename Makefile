@@ -14,12 +14,12 @@ copy_hard:
 	@cp -rfv bin/* $(rcdir)/bin/
 	
 cleanup_before:
-	@rm -fv $(rcdir)/tex.doc/{tex,vntex}
+	@rm -rfv $(rcdir)/tex.doc/{tex,vntex}
 	@rm -fv $(rcdir)/vnmik.log/*
 
 cleanup_after:
 	@rm -fv $(rcdir)/{setup.bat,user.cfg.bat,.bash_history}
-	@rm -fv $(rcdir)/bin/{old,svn}
+	@rm -rfv $(rcdir)/bin/{old,svn}
 	@rm -fv $(rcdir)/tex.var/*
 	
 distro: cleanup_before copy copy_hard cleanup_after makezip
