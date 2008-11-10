@@ -46,12 +46,12 @@ vntex_install()
 }
 
 vntex_update () {
-	local testdir=$PREFIX/tex.doc/test
-	local doc=vntex_test
 	vntex_update_map
 }
 
 vntex_test() {
+	local testdir=$PREFIX/tex.doc/test
+	local doc=vntex_test
 	cd $testdir
 	rm -f $testdir/${doc}.{log,dvi,ps,pdf} >/dev/null 2>&1
 	stat_msg "trying to typeset test document. "
