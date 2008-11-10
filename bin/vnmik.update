@@ -19,7 +19,7 @@ if [ ! -f $LOGDIR/VERSION ]; then
 	exit 1
 fi
 
-for script in $LOGDIR/z.*;
+for script in `ls $LOGDIR/z.* |grep -v vnmik`;
 do
 	tmp="`basename $script`"
 	pkg="${tmp:2:${#tmp}}"
@@ -33,7 +33,10 @@ done
 
 texmf_texhash
 
-[ -f $LOGDIR/z.vnmik_test ] && vnmik_test_install --update
-
+[ -f $LOGDIR/z.vnmik_test ] && \
+	vnmik_test_install --update
+[ -f $LOGDIR/z.vnmik$MAJOR_VERSION] && \
+	vnmik_install --update
+	
 cleanup
 pause
