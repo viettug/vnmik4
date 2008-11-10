@@ -1,5 +1,6 @@
 rcdir=/cygdrive/c/vnmik/
 version=4.0.1
+debug=echo
 
 default: copy
 
@@ -19,9 +20,10 @@ cleanup_before:
 cleanup_after:
 	@rm -fv $(rcdir)/{setup.bat,user.cfg.bat,.bash_history}
 	@rm -fv $(rcdir)/bin/{old,svn}
+	@rm -fv $(rcdir)/tex.var/*
 	
 distro: cleanup_before copy copy_hard cleanup_after makezip
 
 makezip:
 	cd $(rcdir)/.. && \
-		zip -9r vnmik-$(version).zip vnmik/*
+		$(debug) zip -9r vnmik-$(version).zip vnmik/*
