@@ -264,8 +264,6 @@ install_package() # install packages *.r
 
 vnmik()
 {
-	local repos="http://download.tuxfamily.org/viettug/vnmik/repos/"
-
 	usage()
 	{
 		stat_log "($FUNCNAME) missing parameter. printing the usage page..."
@@ -325,7 +323,7 @@ vnmik()
 			query "y" "Package does exist. overwrite"
 			[ $? == 0 ] || return 1			
 		fi
-		wget "$repos/$pkg$PKG_SUFFIX" -O $PKGDIR/$pkg
+		wget "$VNMIK_REPO/$pkg$PKG_SUFFIX" -O $PKGDIR/$pkg
 		stat_log "wget returns $?"
 	;;
 	*)
