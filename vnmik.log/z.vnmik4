@@ -1,5 +1,5 @@
 # TODO: check associations =1 for vnmik HARD_DISK Installatino
-vnmik_update() {
+vnmik4_update() {
 	local miktex_path=/HKCU/software/miktex.org/miktex/2.7
 	install_PATH $PREFIX/tex.bin
 	
@@ -36,9 +36,10 @@ vnmik_update() {
 		$miktex_path/mpm/autoinstall
 }
 
-vnmik_install() {
+vnmik4_install() {
 	vnmik_update
 }
 
-vnmik_test() {
+vnmik4_test() {
+	stat_log "$(FUNCNAME) donothing"
 }
