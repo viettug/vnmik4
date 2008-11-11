@@ -21,7 +21,7 @@ if [ ! -f $LOGDIR/VERSION ]; then
 fi
 
 check_PreviousInstance
-check_PreviousVersion
+# check_PreviousVersion
 check_OS
 check_RWVnMik
 check_DiskSpace 10
