@@ -11,6 +11,8 @@ copy:
 	@cp -ufv tex.doc/vntex/*.pdf $(rcdir)/tex.doc/vntex/
 	@cp -ufv *.bat $(rcdir)/
 	@rm -fv $(rcdir)/vnmik.log/z.vnmik_test
+	@cp -ufv distro/vntex.sty $(rcdir)/tex.user/tex/latex/vntex
+	@cp -ufv vnmik.doc/ReadMe.png $(rcdir)/
 
 copy_hard:
 	@cp -ufv bin/*.* $(rcdir)/bin/

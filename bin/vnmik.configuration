@@ -38,5 +38,6 @@ export VNMIKBIN_PATH=
 export USERHOME="`cygpath -u "$USERPROFILE" 2>/dev/null`"
 export ISPOWERED=0
 export GET_ME_RUN=0
+export PATH=$PATH:$PREFIX/tex.base/miktex/bin
 
 # end of file
