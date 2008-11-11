@@ -41,5 +41,5 @@ vnmik4_install() {
 }
 
 vnmik4_test() {
-	stat_log "$(FUNCNAME) donothing"
+	stat_log "(vnmik4_test): do nothing"
 }
