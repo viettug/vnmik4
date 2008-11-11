@@ -159,12 +159,10 @@ check_RWVnMik()
 	stat_log "checking read/write permission of $PREFIX"
 	local FILELIST="VERSION lock tmp tmpi log.all"
 	local DIRLIST="\
-		tex.editor \
 		tex.config \
 		tex.base \
 		tex.user \
 		tex.var \
-		tex.apps \
 		tex.doc \
 		bin \
 		vnmik.log \
