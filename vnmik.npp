@@ -1,0 +1,30 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="16">
+            <File firstVisibleLine="78" xOffset="0" scrollWidth="624" startPos="1585" endPos="1585" selMode="0" lang="Shell" filename="Z:\vnmik\bin\vnmik.message.utils" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\vnmik.validators" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\vnmik.configuration" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\0ini_rm_sec" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\ctan" />
+            <File firstVisibleLine="261" xOffset="0" scrollWidth="704" startPos="6959" endPos="6959" selMode="0" lang="Shell" filename="Z:\vnmik\bin\vnmik.functions" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\vnmik.package.installer" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="616" startPos="7" endPos="7" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\vnmik.package.make" />
+            <File firstVisibleLine="21" xOffset="0" scrollWidth="440" startPos="0" endPos="0" selMode="0" lang="Shell" filename="Z:\vnmik\bin\vnmik.install.package" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="240" startPos="0" endPos="0" selMode="0" lang="Shell" filename="Z:\vnmik\bin\vnmik.reload" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="280" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\vnmik.setup" />
+            <File firstVisibleLine="18" xOffset="0" scrollWidth="672" startPos="262" endPos="262" selMode="0" lang="Shell" filename="Z:\vnmik\bin\vnmik.test" />
+            <File firstVisibleLine="36" xOffset="0" scrollWidth="728" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\bin\vnmik.registry.tools" />
+            <File firstVisibleLine="24" xOffset="0" scrollWidth="624" startPos="201" endPos="201" selMode="0" lang="Shell" filename="Z:\vnmik\bin\vnmik.update" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="304" startPos="0" endPos="0" selMode="0" lang="Normal Text" filename="Z:\vnmik\vnmik.log\z.nil" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="464" startPos="440" endPos="28" selMode="0" lang="Shell" filename="Z:\vnmik\vnmik.log\z.vnmik_test" />
+            <File firstVisibleLine="32" xOffset="0" scrollWidth="720" startPos="1225" endPos="1225" selMode="0" lang="Shell" filename="Z:\vnmik\vnmik.log\z.vnmik4" />
+            <File firstVisibleLine="40" xOffset="0" scrollWidth="768" startPos="0" endPos="0" selMode="0" lang="Shell" filename="Z:\vnmik\vnmik.log\z.vntex" />
+            <File firstVisibleLine="15" xOffset="0" scrollWidth="472" startPos="1171" endPos="1171" selMode="0" lang="Makefile" filename="Z:\vnmik\Makefile" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="584" startPos="281" endPos="281" selMode="0" lang="TeX" filename="Z:\vnmik\tex.doc\test\vnmik_test.tex" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="568" startPos="719" endPos="719" selMode="0" lang="TeX" filename="Z:\vnmik\tex.doc\test\vntex_test.tex" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="472" startPos="127" endPos="127" selMode="0" lang="Batch" filename="Z:\vnmik\test.bat" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="472" startPos="157" endPos="157" selMode="0" lang="Batch" filename="Z:\vnmik\update.bat" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>
