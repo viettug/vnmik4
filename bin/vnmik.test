@@ -1,6 +1,11 @@
 #!bash
 
-# this file is part of VnMiK 4.0.0
+source vnmik.configuration
+source vnmik.message.utils
+source vnmik.functions
+source vnmik.validators
+source vnmik.package.installer
+source vnmik.registry.tools
 
 msg()
 {
@@ -9,36 +14,38 @@ msg()
 
 xtest()
 {
-	msg "testing function ($1)"
+	stat_msg "testing $1"
 	$1
-	msg "return code: $?"
+	stat_msg "$1 returns $?"
 }
 
+hello
 
-msg "loading function libraries"
+stat_msg "_.:= Testing VnMiK system =:._"
 
-source vnmik.configuration
-source vnmik.message.utils
-source vnmik.functions
-source vnmik.validators
-source vnmik.package.installer
-source vnmik.registry.tools
+check_PreviousInstance
+check_RWVnMik
+install_version
+check_PDFReader
+check_UserHome
+check_RWRegistryDatabase
+check_PowerPrivilege
+check_PATHinRegistry
+# registry_backup
 
-stat_date
+for f in vnmik4 vntex; do
+	if [ ! -f $LOGDIR/z.$f ]; then
+		stat_warn "$LOGDIR/z.$f not found"
+	else
+		source $LOGDIR/z.$f && ${f}_test
+	fi
+done
 
-# msg "installing a package"
-# install_package /cygdrive/c/vnmik/vnmik.packages/bin.spdf.4
+stat_msh
+stat_msh
+stat_msg "testing complete. If you cannot read some documents please report to VnMiK Team."
+stat_msh
+stat_msh
 
-xtest hello
-xtest check_PreviousInstance
-xtest check_PreviousVersion
-xtest check_RWVnMik
-xtest install_version
-xtest check_PDFReader
-xtest check_UserHome
-xtest check_RWRegistryDatabase
-xtest check_PowerPrivilege
-xtest check_PATHinRegistry
-xtest registry_backup
-
+pause
 cleanup

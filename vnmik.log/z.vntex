@@ -59,9 +59,16 @@ vntex_test() {
 	stat_log "latex: $?"
 	echo x | pdflatex --halt-on-error ${doc} 2>&1
 	stat_log "pdflatex: $?"
-	stat_msg "see $testdir/*log for errors details"
+	stat_msh "see $testdir/*log for errors details"
 	if [ -f ${doc}.pdf ]; then 
-		stat_msg "starting PDF READER..."
+		stat_msg "starting PDF reader. If you can read Vietnamese tex, it's ok"
+		stat_msh "after reading text, please close PDF reader to go back here"
+		pause
 		spdf ${doc}.pdf
+		stat_log "spdf: $?"
+	else
+		stat_warn "cannot find the pdf output. Something wrong occured"
+		stat_warn "please report to VnMiK team"
+		pause
 	fi	
 }

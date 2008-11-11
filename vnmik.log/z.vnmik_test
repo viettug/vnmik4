@@ -17,9 +17,9 @@ vnmik_test_test()
 }
 
 vnmik_test_update() {
-	stat_log "($FUNCNAME) donothing"
+	stat_log "($FUNCNAME) do nothing"
 }
 
 vnmik_test_install() {
-	vnmik_test_update
+	stat_log "($FUNCNAME) do nothing"
 }

@@ -94,6 +94,7 @@ hello() # print the hello message
 	echo ''
 	set_color 0
 	HELLOC=
+	stat_date
 }
 
 install_version() # install vnmik version
@@ -115,6 +116,8 @@ texmf_texhash() # update miktex databased and make fonts maps
 			stat_log "running: initexmf --verbose $option"
 			$TEXHASH --verbose $option	|| stat_log "return status: $?"
 		done
+		stat_msg "moving files to tex.bin/"
+		# mv $PREFIX/tex.base/miktex/bin/* $PREFIX/tex.bin/
 	fi
 }
 
