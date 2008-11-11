@@ -7,7 +7,7 @@ vnmik_test_test()
 	cd $testdir
 	rm -f $testdir/${doc}.{log,dvi,ps,pdf} >/dev/null 2>&1
 	stat_msg "trying to typeset test document. "
-	latex --halt-on-error $doc >/dev/null 2>&1
+	echo x | latex --halt-on-error $doc >/dev/null 2>&1
 	stat_log "latex: $?"
 	dvips ${doc}.dvi >$testdir/${doc}.dvips.log 2>&1
 	stat_log "dvips: $?"
