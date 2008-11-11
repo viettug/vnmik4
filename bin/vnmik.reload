@@ -1,5 +1,10 @@
 #!bash
 
+# This file is part of VnMiK4, http://vnmik.sf.net/
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+# $Id$
+
 source vnmik.configuration
 source vnmik.message.utils
 source vnmik.functions

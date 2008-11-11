@@ -1,8 +1,11 @@
 #!bash
 
-# $Id: vnmik.package.installer 107 2008-06-09 01:32:19Z kyanh $ $
+# $Id$ $
 
-# This file is part of VnMiK-4.0.0 <http://vnmik.sf.net>
+# This file is part of VnMiK4, http://vnmik.sf.net/
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+
 
 ##############################################################################
 # FILE TYPE EXTENSIONS

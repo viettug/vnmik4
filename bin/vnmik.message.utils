@@ -1,6 +1,9 @@
-# $Id: vnmik.message.utils 106 2008-06-09 01:06:33Z kyanh $
+# $Id$
 
-# This file is part of VnMiK 4.0.0 <http://vnmik.sf.net/>
+# This file is part of VnMiK4, http://vnmik.sf.net/
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+# $Id$
 
 ##############################################################################
 # color utils

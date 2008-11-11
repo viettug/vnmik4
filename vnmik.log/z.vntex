@@ -1,4 +1,7 @@
-#!bash
+# This file is part of VnMiK4, http://vnmik.sf.net/
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+# $Id$
 
 vntex_add_line() {
 	local updmap=$PREFIX/tex.config/miktex/config/updmap.cfg

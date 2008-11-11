@@ -1,4 +1,10 @@
-# TODO: check associations =1 for vnmik HARD_DISK Installatino
+# This file is part of VnMiK4, http://vnmik.sf.net/
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+# $Id$
+
+# TODO: check associations =1 for vnmik HARD_DISK Installation
+
 vnmik4_update() {
 	local miktex_path=/HKCU/software/miktex.org/miktex/2.7
 	install_PATH $PREFIX/tex.bin

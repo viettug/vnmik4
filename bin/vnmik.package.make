@@ -1,5 +1,10 @@
 #!bash
 
+# This file is part of VnMiK4, http://vnmik.sf.net/
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+# $Id$
+
 export SRC_DIR=/cygdrive/c/data/vnmik
 export ROOT_DIR=$PREFIX
 
