@@ -9,6 +9,7 @@ copy:
 	@cp -fv vnmik.log/{VERSION,z.*} $(rcdir)/vnmik.log/
 	@cp -fv tex.doc/test/*.tex $(rcdir)/tex.doc/test
 	@cp -fv tex.doc/vntex/*.pdf $(rcdir)/tex.doc/vntex/
+	@cp -fv *.bat $(rcdir)/
 
 copy_hard:
 	@cp -fv bin/*.* $(rcdir)/bin/
@@ -19,8 +20,8 @@ copy_hard:
 	
 cleanup_before:
 	@rm -rfv $(rcdir)/tex.doc/{tex,vntex}
-	@rm -fv $(rcdir)/vnmik.log/*
-	@mkdir -p $(rcdir)/tex.doc/{tex,vntex}
+	@rm -rfv $(rcdir)/vnmik.log/*
+	@mkdir -p $(rcdir)/tex.doc/{test,vntex}
 
 cleanup_after:
 	@rm -fv $(rcdir)/{setup.bat,user.cfg.bat,.bash_history}
@@ -29,8 +30,9 @@ cleanup_after:
 	@rm -fv $(rcdir)/tex.doc/vntex/*min*
 	@rm -fv $(rcdir)/tex.doc/vntex/*print*
 	
-distro: cleanup_before copy copy_hard cleanup_after makezip
+distro: cleanup_before copy copy_hard cleanup_after
 
 makezip:
-	cd $(rcdir)/.. && \
-		$(debug) zip -9r vnmik-$(version).zip vnmik/*
+	cd $(rcdir)/.. && zip -9r vnmik-$(version).zip vnmik/*
+
+	
