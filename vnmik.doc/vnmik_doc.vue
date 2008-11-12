@@ -1,7 +1,7 @@
 <!-- Tufts VUE 2.2.8 concept-map (vnmik_doc.vue) 2008-11-12 -->
 <!-- Tufts VUE: http://vue.tufts.edu/ -->
 <!-- Do Not Remove: VUE mapping @version(1.1) jar:file:/home/share.nix/xbin/VUE/VUE.jar!/tufts/vue/resources/lw_mapping_1_1.xml -->
-<!-- Do Not Remove: Saved date Wed Nov 12 01:04:44 ICT 2008 by kyanh on platform Linux 2.6.27-ARCH in JVM 1.6.0_10-b33 -->
+<!-- Do Not Remove: Saved date Wed Nov 12 02:18:43 ICT 2008 by kyanh on platform Linux 2.6.27-ARCH in JVM 1.6.0_10-b33 -->
 <!-- Do Not Remove: Saving version @(#)VUE: built July 2 2008 at 1658 by vue on Linux 2.4.21-53.EL i386 JVM 1.5.0_06-b05 -->
 <?xml version="1.0" encoding="US-ASCII"?>
 <LW-MAP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -1627,8 +1627,8 @@
     </child>
     <child ID="86"
         label="\usepackage{vntex}&#xa;thay cho&#xa;\usepackage[utf8]{vietnam}"
-        x="-358.76678" y="281.68698" width="193.0" height="50.0"
-        strokeWidth="1.0" autoSized="true" xsi:type="node">
+        x="-358.76678" y="281.68698" width="196.11328"
+        height="53.460968" strokeWidth="1.0" autoSized="false" xsi:type="node">
         <fillColor>#DAA9FF</fillColor>
         <strokeColor>#776D6D</strokeColor>
         <textColor>#000000</textColor>
@@ -1645,8 +1645,8 @@
         <URIString>http://vue.tufts.edu/rdf/resource/8cb7c338c0a8010939ea2de102d53393</URIString>
         <shape arcwidth="20.0" archeight="20.0" xsi:type="roundRect"/>
     </child>
-    <child ID="87" x="-168.28632" y="167.00002" width="102.11106"
-        height="119.46471" strokeWidth="1.0" autoSized="false"
+    <child ID="87" x="-163.95163" y="167.00002" width="97.776375"
+        height="119.68788" strokeWidth="1.0" autoSized="false"
         controlCount="2" arrowState="0" xsi:type="link">
         <strokeColor>#404040</strokeColor>
         <textColor>#404040</textColor>
@@ -1662,7 +1662,7 @@
         </metadata-list>
         <URIString>http://vue.tufts.edu/rdf/resource/8cb7c339c0a8010939ea2de18ed9648c</URIString>
         <point1 x="-66.675255" y="167.50002"/>
-        <point2 x="-167.78632" y="285.96472"/>
+        <point2 x="-163.45163" y="286.1879"/>
         <ID1 xsi:type="node">19</ID1>
         <ID2 xsi:type="node">86</ID2>
         <ctrlPoint0 x="-135.47827" y="239.06642" xsi:type="point"/>
