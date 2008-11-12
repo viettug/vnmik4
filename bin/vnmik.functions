@@ -383,7 +383,7 @@ install_PATH() # added stuff to PATH. $1 = unix path
 		local YPATH=$(echo $XPATH | sed -e 's/\\/\\\\/g')
 		grep -qi "$YPATH" "$XTMP" > /dev/null 2>&1
 		if [ $? -ge 1 ]; then
-			echo "`cat $XTMP`;$XPATH" > "$XTMPI"
+			echo "$XPATH;`cat $XTMP`" > "$XTMPI"
 			regtool -q set '/HKCU/Environment/PATH' \
 				"`cat $XTMPI`" > /dev/null 2>&1
 			if [ $? -ge 1 ]; then
