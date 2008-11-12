@@ -1,5 +1,5 @@
 rcdir=/cygdrive/c/vnmik/
-version=4.0.1
+version=4.0.2
 debug=echo
 
 default: copy
