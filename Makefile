@@ -41,6 +41,8 @@ cleanup_after:
 	
 distro: cleanup_before copy copy_hard cleanup_after
 
-makezip:
+zip:
 	cd $(rcdir)/.. && zip -9r vnmik-$(version).zip vnmik/*
-	
+
+fastzip:
+	cd $(rcdir)/.. && zip -0r vnmik-$(version).zip vnmik/*	
