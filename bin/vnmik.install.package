@@ -46,6 +46,15 @@ fi
 
 install_package $PKGDIR/*$PKG_SUFFIX
 
+stat_log "moving installed packages to $PKGDIR/installed"
+mkdir $PKGDIR/installed
+if [ -d $PKGDIR/installed ]; then
+	stat_log $PKGDIR/*$PKG_SUFFIX 
+	mv $PKGDIR/*$PKG_SUFFIX $PKGDIR/installed
+else
+	stat_log $PKGDIR/installed not found
+fi
+
 texmf_texhash
 
 cleanup
