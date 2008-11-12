@@ -59,6 +59,8 @@ done
 
 texmf_texhash
 
+export PATH=$PATH:$PREFIX/tex.base/miktex/bin
+
 for script in `ls $LOGDIR/z.*`;
 do
 	tmp="`basename $script`"
