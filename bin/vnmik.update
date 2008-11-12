@@ -59,7 +59,7 @@ done
 
 texmf_texhash
 
-export PATH=$PATH:$PREFIX/tex.base/miktex/bin
+export PATH=$PREFIX/tex.base/miktex/bin:$PREFIX/tex.bin:$PATH
 
 for script in `ls $LOGDIR/z.*`;
 do
