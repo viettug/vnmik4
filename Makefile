@@ -46,3 +46,7 @@ zip:
 
 fastzip:
 	cd $(rcdir)/.. && zip -0r vnmik-$(version).zip vnmik/*	
+
+move:
+	mv -v $(rcdir)/../vnmik*.zip distro/
+# end of file
