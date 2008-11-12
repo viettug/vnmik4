@@ -1,4 +1,6 @@
 rcdir=/cygdrive/c/vnmik/
+rddir=/cygdrive/z/vnmik
+distrodir=$(rddir)/distro
 version=4.0.2
 debug=echo
 
@@ -42,11 +44,9 @@ cleanup_after:
 distro: cleanup_before copy copy_hard cleanup_after
 
 zip:
-	cd $(rcdir)/.. && zip -9r vnmik-$(version).zip vnmik/*
+	cd $(rcdir)/.. && zip -9r $(distrodir)/vnmik-$(version).zip vnmik/*
 
 fastzip:
-	cd $(rcdir)/.. && zip -0r vnmik-$(version).zip vnmik/*	
+	cd $(rcdir)/.. && zip -0r $(distrodir)/vnmik-$(version).zip vnmik/*	
 
-move:
-	mv -v $(rcdir)/../vnmik*.zip distro/
-# end of file
+	# end of file
