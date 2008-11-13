@@ -75,7 +75,7 @@ else
 		fi
 
 		cd $ddir/tmp/$bfile/vnmik
-		tar cfvj $ddir/$patch_name `cat $diff_er`
+		tar cfvj $ddir/$patch_name.4 `cat $diff_er`
 
 	fi
 fi
