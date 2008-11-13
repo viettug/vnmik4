@@ -39,7 +39,7 @@ makepkg_core()
 		cd $ROOT_DIR
 		z cfvj $dest $script $pattern | tee -a $LOGFILE
 		stat_msg "new package: $dest"
-	fi	
+	fi
 }
 
 makepkg()
@@ -65,8 +65,8 @@ makepkg()
 			rm -fv $ROOT_DIR/tex.doc/test/*
 			cp -fv \
 				$SRC_DIR/tex.doc/test/* \
-				$ROOT_DIR/tex.doc/test/	
-		
+				$ROOT_DIR/tex.doc/test/
+
 			makepkg_core vnmik_test \
 				"tex.doc/test/*.tex"
 		;;
@@ -92,7 +92,7 @@ makepkg()
 		esac
 
 		shift
-	done	
+	done
 }
 
 makepkg_all()
@@ -106,7 +106,7 @@ makepkg_all()
 }
 
 # this is so bad. we must enter package directory to check sum :D
-# a hack script should be written for this purpose 
+# a hack script should be written for this purpose
 make_md5checksum()
 {
 	stat_log "creating md5sum files for packages..."
