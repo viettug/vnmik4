@@ -53,7 +53,7 @@ stat_prefix()
 }
 
 # RAW write something to log file
-stat_log() 
+stat_log()
 {
 	echo "$@" >> $LOGFILE 2>/dev/null
 	return 0
@@ -147,6 +147,14 @@ stat_msh()
 msg()
 {
 	echo -e $@
+}
+
+error_help()
+{
+	stat_msg "Something wrong happened"
+	stat_msh "Please report to VnMiK team <http://vnmik.sf.net>"
+	stat_msh "Remember to paste you log file"
+	stat_msg "   /vnmik/vnmik.log/log.all"
 }
 
 # initialize something
