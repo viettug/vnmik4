@@ -7,14 +7,16 @@
 
 vnmik4_update() {
 	local miktex_path=/HKCU/software/miktex.org/miktex/2.7
+
 	install_PATH $PREFIX/tex.bin
 	install_PATH $PREFIX/tex.base/miktex/bin
-	
+	zz sysrefresh environment
+
 	# core paths
 	registry_add \
 		--string "`path_to_win $PREFIX/tex.base`" \
 		$miktex_path/core/install
-	
+
 	registry_add \
 		--skip-subkey-check \
 		--string "`path_to_win $PREFIX/tex.base`;`path_to_win $PREFIX/tex.user`" \
@@ -27,12 +29,12 @@ vnmik4_update() {
 		--skip-subkey-check \
 		--string "`path_to_win $PREFIX/tex.var`" \
 		$miktex_path/core/userdata
-	
+
 	# Yap
 	registry_add \
 		--dword 0 \
 		"$miktex_path/yap/settings/check associations"
-	
+
 	# mpm
 	registry_add \
 		--string "ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/systems/win32/miktex/tm/packages/" \
@@ -52,7 +54,7 @@ vnmik4_test() {
 	stat_msh "`type latex`"
 	stat_msh "`type pdflatex`"
 	stat_msh "`type spdf`"
-	
+
 	local testdir=$PREFIX/tex.doc/test
 	local doc=vnmik_test
 	cd $testdir
