@@ -43,6 +43,9 @@ cleanup_after:
 
 distro: cleanup_before copy copy_hard cleanup_after chmod
 
+version:
+	@grep '# version' $(rddir)/bin/vnmik.configuration > vnmik.log/VERSION
+
 chmod:
 	@cd $(rcdir) && 0cm 644 755 . -v
 

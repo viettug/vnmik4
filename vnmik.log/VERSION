@@ -1,2 +1,4 @@
-VNMIKID_A=3141 # 4.0.0 # Wed Oct 15 15:55:37 SEAST 2008
-VNMIKID_A=31415 # 4.0.1 # Mon Nov 10 14:14:00 SEAST 2008
+export VERSION=4.0.2 # version
+export MAJOR_VERSION=4 # version
+export VNMIKID=314159 # version
+export MIKTEX_VERSION='MikTeX-2.7-3224' # version
