@@ -1,7 +1,7 @@
 rcdir=$(HOME)/vnmik/
 rddir=$(HOME)/vnmik-devel/
 distrodir=$(rddir)/distro
-version=4.0.2
+version=$$(grep 'export VERSION=' $(rddir)/bin/vnmik.configuration | gawk -F'=' '{print $$2}')
 debug=echo
 
 default: copy
@@ -45,7 +45,10 @@ cleanup_after:
 distro: cleanup_before copy copy_hard cleanup_after chmod version
 
 version:
-	@grep '# version' $(rddir)/bin/vnmik.configuration > vnmik.log/VERSION
+	@grep 'export VERSION' $(rddir)/bin/vnmik.configuration > vnmik.log/VERSION
+
+testversion:
+	@echo $(version)
 
 chmod:
 	@cd $(rcdir) && 0cm 644 755 . -v
