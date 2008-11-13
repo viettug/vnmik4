@@ -42,7 +42,7 @@ cleanup_after:
 	@rm -fv $(rcdir)/tex.doc/vntex/*min*
 	@rm -fv $(rcdir)/tex.doc/vntex/*print*
 
-distro: cleanup_before copy copy_hard cleanup_after chmod
+distro: cleanup_before copy copy_hard cleanup_after chmod version
 
 version:
 	@grep '# version' $(rddir)/bin/vnmik.configuration > vnmik.log/VERSION
