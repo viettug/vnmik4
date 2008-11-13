@@ -1,4 +1,1 @@
-export VERSION=4.0.2 # version
-export MAJOR_VERSION=4 # version
-export VNMIKID=314159 # version
-export MIKTEX_VERSION='MikTeX-2.7-3224' # version
+export VERSION=4.1.0
