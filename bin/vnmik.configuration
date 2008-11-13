@@ -11,9 +11,9 @@ export IGNORE_DOC_SOURCE=1 # ignore texmf/doc and texmf/source
 ##############################################################################
 
 export MINSIZE=200 #
-export VERSION=4.0.2 # version
-export MAJOR_VERSION=4 # version
-export VNMIKID=314159 # version
+export VERSION=4.1.0
+export MAJOR_VERSION=4
+export VNMIKID=3141592
 export MIKTEX_VERSION='MikTeX-2.7-3224' # version
 
 ##############################################################################
