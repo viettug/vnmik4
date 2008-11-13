@@ -1,5 +1,5 @@
-rcdir=/cygdrive/c/vnmik/
-rddir=/cygdrive/z/vnmik
+rcdir=$(HOME)/vnmik/
+rddir=$(HOME)/vnmik-devel/
 distrodir=$(rddir)/distro
 version=4.0.2
 debug=echo
@@ -22,7 +22,7 @@ copy_hard:
 	@cp -urfv bin/dlls/* $(rcdir)/bin/dlls
 	@cp -urfv bin/libs/* $(rcdir)/bin/libs
 	@rm -rfv $(rcdir)/bin/{dlls,libs}/.svn
-	
+
 cleanup_before:
 	@rm -rfv $(rcdir)/tex.doc/{vntex,test}
 	@rm -rfv $(rcdir)/vnmik.log/*
@@ -33,20 +33,24 @@ cleanup_after:
 	@rm -rfv $(rcdir)/bin/{old,svn}
 	@rm -fv $(rcdir)/bin/*svn*
 	@rm -fv $(rcdir)/bin/vntex-update-maps
-	
+
 	@rm -fv $(rcdir)/tex.var/fontconfig/cache/*
 	@rm -rfv $(rcdir)/tex.var/fonts/pk/*
 	@rm -fv $(rcdir)/tex.var/miktex/config/*
 	# @rm -fv $(rcdir)/tex.base/miktex/bin/*
 	@rm -fv $(rcdir)/tex.doc/vntex/*min*
 	@rm -fv $(rcdir)/tex.doc/vntex/*print*
-	
+
 distro: cleanup_before copy copy_hard cleanup_after
 
 zip:
-	cd $(rcdir)/.. && zip -9r $(distrodir)/vnmik-$(version).zip vnmik/*
+	@rm -fv $(distrodir)/vnmik-$(version).zip
+	cd $(rcdir)/.. && \
+		zip -9r $(distrodir)/vnmik-$(version).zip vnmik/* -x "*~"
 
-fastzip:
-	cd $(rcdir)/.. && zip -0r $(distrodir)/vnmik-$(version).zip vnmik/*	
+fzip:
+	@rm -fv $(distrodir)/vnmik-$(version).zip
+	cd $(rcdir)/.. && \
+		zip -0r $(distrodir)/vnmik-$(version).zip vnmik/* -x "*~"
 
 	# end of file
