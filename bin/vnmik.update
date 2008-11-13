@@ -43,8 +43,8 @@ check_PowerPrivilege
 registry_backup
 
 if [ ! -f $LOGDIR/z.vnmik$MAJOR_VERSION ]; then
-	cleanup
 	stat_fail "cannot locate log/z.vnmik$MAJOR_VERSION"
+	cleanup
 	exit 1
 fi
 
