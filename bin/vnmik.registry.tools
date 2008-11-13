@@ -44,7 +44,7 @@ registry_add()
 	stat_log "registry update: $kind, value=$value, key=$key, path=$path"
 	if [ $skip_subkey_check == 1 ]; then
 		stat_log "skip subkey check. may cause some errors in regtool's set action"
-	else	
+	else
 		stat_log "getting list of subkeys..."
 		local sub_keys=""
 		local tmp_st="$key"
