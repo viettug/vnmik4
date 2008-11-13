@@ -30,11 +30,11 @@ vntex_update_map () {
 	for m in $amaps; do
 		vntex_add_line "MixedMap $m.map"
 	done
-	
+
 	for m in $bmaps; do
 		vntex_add_line "Map ${m}vn.map"
 	done
-	
+
 	for m in $cmaps; do
 		vntex_add_line "Map $m.map"
 	done
@@ -57,21 +57,21 @@ vntex_test() {
 	local doc=vntex_test
 	cd $testdir
 	rm -f $testdir/${doc}.{log,dvi,ps,pdf} >/dev/null 2>&1
-	stat_msg "trying to typeset test document. "
+	stat_msh "trying to typeset ${doc}"
 	echo x | latex --halt-on-error $doc >/dev/null 2>&1
 	stat_log "latex: $?"
 	echo x | pdflatex --halt-on-error ${doc} 2>&1
 	stat_log "pdflatex: $?"
-	stat_msh "see $testdir/*log for errors details"
-	if [ -f ${doc}.pdf ]; then 
-		stat_msg "starting PDF reader. If you can read Vietnamese tex, it's ok"
-		stat_msh "after reading text, please close PDF reader to go back here"
-		pause
-		spdf ${doc}.pdf
-		stat_log "spdf: $?"
+	if [ ! -f ${doc}.pdf ]; then
+		stat_warn "cannot create pdf file"
+		error_help
 	else
-		stat_warn "cannot find the pdf output. Something wrong occured"
-		stat_warn "please report to VnMiK team"
-		pause
-	fi	
+		grep -q 'vntt10.pfb' $testdir/${doc}.log
+		if [ $? -ge 1 ]; then
+			stat_warn "cannot load type1 fonts in pdf output"
+			error_help
+		else
+			stat_msg "vntex was installed successfully"
+		fi
+	fi
 }
