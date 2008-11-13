@@ -26,6 +26,6 @@ else
 			| gawk -F '.zip/vnmik/' '{print $2}' \
 			> $diffdir/diff-$v1-$v2.log.A
 		cd $ddir/tmp/$bfile/vnmik
-		tar cfvj $ddir/vnmik-patch-$v1-$v2.4 `cat $diffdir/diff-$v1-$v2.log.A`
+		tar cfvj $ddir/vnmik-$v1-$v2-patch.4 `cat $diffdir/diff-$v1-$v2.log.A`
 	fi
 fi
