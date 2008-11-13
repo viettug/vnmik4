@@ -46,7 +46,11 @@ done
 
 stat_msh
 stat_msh
-stat_msg "testing complete. If you cannot read some documents please report to VnMiK Team."
+stat_msh "Testing completed. Open the following documents"
+stat_msg "   /vnmik/tex.doc/test/*.pdf"
+stat_msh
+stat_msh "If you can read them the everything is OK. Otherwise please report"
+stat_msg "   /vnmik/vnmik.log/log.all"
 stat_msh
 stat_msh
 
