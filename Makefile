@@ -41,7 +41,10 @@ cleanup_after:
 	@rm -fv $(rcdir)/tex.doc/vntex/*min*
 	@rm -fv $(rcdir)/tex.doc/vntex/*print*
 
-distro: cleanup_before copy copy_hard cleanup_after
+distro: cleanup_before copy copy_hard cleanup_after chmod
+
+chmod:
+	@cd $(rcdir) && 0cm 644 755 . -v
 
 zip:
 	@rm -fv $(distrodir)/vnmik-$(version).zip
