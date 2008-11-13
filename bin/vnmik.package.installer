@@ -155,7 +155,7 @@ install_package_A()
 		# check for md5sum
 		if [ -f $pkgfile.md5sum -a -r $pkgfile.md5sum ]; then
 			stat_log "testing package using md5sum"
-			md5sum -c $pkgfile.md5sum > /dev/null 2>&1			
+			md5sum -c $pkgfile.md5sum > /dev/null 2>&1
 		else
 			stat_log "we donnot find any md5sum file for package. We try to use ${TYPE}_TEST"
 			${TYPE}_TEST "$1"
@@ -169,7 +169,7 @@ install_package_A()
 			if [ $? -gt 0 ]; then
 				shift
 				continue
-			fi	
+			fi
 			stat_msh "extracting..."
 			${TYPE}_EXTRACT "$1" "$DEST" > $LOGDIR/log.$PACKAGE 2>/dev/null
 			stat_log "package extracted; type: $TYPE; return value $?"
@@ -270,7 +270,7 @@ vnmik()
 	usage()
 	{
 		stat_log "($FUNCNAME) missing parameter. printing the usage page..."
-		msg "example:" 
+		msg "example:"
 		msg "\tvnmik list :\t list all package"
 		msg "\tvnmik ins :\t install package"
 		msg "\tvnmik get :\t download a package from VietTUG repository"
@@ -299,7 +299,7 @@ vnmik()
 			done
 		else
 			msg "no package found in $PKGDIR/"
-		fi	
+		fi
 	;;
 	"ins")
 		check_arg $* || return 1
@@ -324,7 +324,7 @@ vnmik()
 		stat_msg "downloading $pkg from $repos"
 		if [ -f $PKGDIR/$pkg ]; then
 			query "y" "Package does exist. overwrite"
-			[ $? == 0 ] || return 1			
+			[ $? == 0 ] || return 1
 		fi
 		wget "$VNMIK_REPO/$pkg$PKG_SUFFIX" -O $PKGDIR/$pkg
 		stat_log "wget returns $?"
