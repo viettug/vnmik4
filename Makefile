@@ -27,6 +27,7 @@ cleanup_before:
 	@rm -rfv $(rcdir)/tex.doc/{vntex,test}
 	@rm -rfv $(rcdir)/vnmik.log/*
 	@mkdir -p $(rcdir)/tex.doc/{test,vntex}
+	@find $(rcdir) -name "*~" | xargs rm -fv
 
 cleanup_after:
 	@rm -fv $(rcdir)/{setup.bat,user.cfg.bat,.bash_history}
