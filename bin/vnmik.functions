@@ -112,11 +112,11 @@ texmf_texhash() # update miktex databased and make fonts maps
 	if [ $? -gt 0 ]; then
 		stat_warn "unexcutable: $TEXHASH"
 	else
-		for option in "--dump --mklinks" "--mkmaps" "--update-fndb"; do		
+		for option in "--dump --mklinks" "--mkmaps" "--update-fndb"; do
 			stat_log "running: initexmf --verbose $option"
 			$TEXHASH --verbose $option	|| stat_log "return status: $?"
 		done
-		stat_msg "moving files to tex.bin/"
+		# stat_msg "moving files to tex.bin/"
 		# mv $PREFIX/tex.base/miktex/bin/* $PREFIX/tex.bin/
 	fi
 }
@@ -133,12 +133,12 @@ subs_file_A() # substitute with single slash
 	if [ "x$1" != "x" -a -f "$1" -a -r "$1" ]; then
 
 		# == PREFIX ==
-	
+
 		# get DOS path
 		VAR=$(cygpath -d $PREFIX 2>/dev/null )
 		# replace \ by \\
 		VAR=$(echo "$VAR" | sed -e 's/\\/\\\\/g')
-		
+
 		# == PDF READER ==
 
 		# get Windows Path
@@ -307,7 +307,7 @@ install_txc_menu() # install TeXnicCenter Tools Menu
 		'/HKCU/Software/ToolsCenter/TeXnicCenter/Settings/Tools' \
 		>$LOGDIR/tmp 2>/dev/null
 	if [ $? -ge 1 ]; then
-		stat_log 'query failed: /HKCU/Software/ToolsCenter/TeXnicCenter/Settings/Tools' 
+		stat_log 'query failed: /HKCU/Software/ToolsCenter/TeXnicCenter/Settings/Tools'
 		printf "\x00\x00" > $LOGDIR/tmp
 	fi
 	local Xcommand
@@ -489,6 +489,35 @@ fix_mode_by_log()
 path_to_win()
 {
 	echo "`cygpath -w \"$1\"`"
+}
+
+locate_miktexcd() {
+	for d in d e f g h i j k l m n o p q r x y z; do
+		src=/cygdrive/$d
+		dst=""
+		if [ -d $src ]; then
+			ls $src/miktex-bin* >/dev/null 2>&1
+			if [ $? -eq 0 ]; then
+				dst=$src
+			else
+				ls $src/miktex/miktex-bin* >/dev/null 2>&1
+				if [ $? -eq 0 ]; then
+					dst=$src/miktex
+				fi
+			fi
+			if [ ! -z "$dst" ]; then
+				break
+			fi
+		fi
+	done
+	if [ -z "$dst" ]; then
+		ret=1
+		echo "miktex cd not found"
+	else
+		ret=0
+		echo "miktex cd fount: $dst"
+	fi
+	return $ret
 }
 
 stat_log "library loaded: vnmik.functions"
