@@ -245,11 +245,11 @@ check_PATHinRegistry() # check for /HKCU/Environment/PATH
 		# there is no /HKCU/Environment/PATH
 		stat_log "PATH not found in /HKCU/. try to add once again"
 		regtool -q set '/HKCU/Environment/PATH' '%PATH%' > /dev/null 2>&1
-		stat_log "check for PATH in /HKCU/ again"		
+		stat_log "check for PATH in /HKCU/ again"
 		regtool -q get '/HKCU/Environment/PATH' > /dev/null 2>&1
-		if [ $? -ge 1 ]; then		
+		if [ $? -ge 1 ]; then
 			stat_fail "un-writable/readable registry key: /HKCU/Environment/PATH"
-		else			
+		else
 			stat_log "writable registry key: /HKCU/Environment/PATH"
 		fi
 	else
