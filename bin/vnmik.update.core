@@ -1,0 +1,12 @@
+# This file is part of VnMiK 4.x <http://vnmik.sf.net>
+# Author: kyanh <xkyanh@gmail.com>
+# License: GPL
+# $Id$
+
+source vnmik.configuration
+source vnmik.message.utils
+
+if [ -d $LOGDIR/vnmik.core ]; then
+	stat_log "moving files from $LOGDIR/vnmik.core/ to $PREFIX/bin"
+	mv -v $LOGDIR/vnmik.core/* $PREFIX/bin
+fi 
