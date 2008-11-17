@@ -4,7 +4,8 @@ distrodir=$(rddir)/distro
 version=$$(grep 'export VERSION=' $(rddir)/bin/vnmik.configuration | gawk -F'=' '{print $$2}')
 debug=echo
 
-default: copy
+default:
+	@grep -E '^[a-z]+:' ./Makefile
 
 copy:
 	@cp -ufv bin/{ctan,vnmik.*} $(rcdir)/bin/
