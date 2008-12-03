@@ -7,7 +7,7 @@ debug=echo
 default:
 	@grep -E '^[a-z]+:' ./Makefile
 
-copy: # copy files from vnmik-devel to vnmik/
+copy: verion # copy files from vnmik-devel to vnmik/
 	@cp -ufv bin/{ctan,vnmik.*} $(rcdir)/bin/
 	@cp -ufv vnmik.log/{VERSION,z.*} $(rcdir)/vnmik.log/
 	@cp -ufv tex.doc/test/*.tex $(rcdir)/tex.doc/test
@@ -43,7 +43,7 @@ cleanup_after: # delete all unnecessary files
 	@rm -fv $(rcdir)/tex.doc/vntex/*min*
 	@rm -fv $(rcdir)/tex.doc/vntex/*print*
 
-distro: cleanup_before copy copy_hard cleanup_after chmod version
+distro: version cleanup_before copy copy_hard cleanup_after chmod
 
 version:
 	@grep 'export VERSION' $(rddir)/bin/vnmik.configuration > vnmik.log/VERSION
