@@ -11,7 +11,7 @@
 ##############################################################################
 
 export MINSIZE=200 #
-export VERSION=4.1.0
+export VERSION=4.2.0
 export MAJOR_VERSION=4
 export VNMIKID=3141592
 export MIKTEX_VERSION='MikTeX-2.7-3224' # version
