@@ -90,6 +90,10 @@ else
 		fi
 
 		cd $ddir/tmp/$bfile/vnmik
+		if [ -d ./bin ]; then
+			msg "moving ./bin to vnmik.core..."
+			mv ./bin vnmik.core
+		fi
 		msg "create the vnmik package"
 		tar cfj $patch_file `cat $diff_er`
 		msg "patch file is $patch_file"
