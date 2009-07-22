@@ -4,4 +4,3 @@ set PATH=%~dp0\bin;%PATH%
 set HOME=%~dp0
 bash vnmik.update
 bash vnmik.update.core
-pause
