@@ -1,28 +1,29 @@
-rcdir=$(HOME)/vnmik/
-rddir=$(HOME)/vnmik-devel/
-distrodir=$(rddir)/distro
+ROOT=/home/vnmik/
+rcdir=$(ROOT)/vnmik/
+rddir=$(ROOT)/vnmik-devel/
+distrodir=$(rddir)/distro/
 version=$$(grep 'export VERSION=' $(rddir)/bin/vnmik.configuration | gawk -F'=' '{print $$2}')
 debug=echo
 
 default:
-	@grep -E '^[a-z]+:' ./Makefile
+	@grep -E '^[a-z0-9]+:' ./Makefile
 
-copy: verion # copy files from vnmik-devel to vnmik/
-	@cp -ufv bin/{ctan,vnmik.*} $(rcdir)/bin/
-	@cp -ufv vnmik.log/{VERSION,z.*} $(rcdir)/vnmik.log/
-	@cp -ufv tex.doc/test/*.tex $(rcdir)/tex.doc/test
-	@cp -ufv tex.doc/vntex/*.pdf $(rcdir)/tex.doc/vntex/
-	@cp -ufv *.bat $(rcdir)/
+copy: version # copy files from vnmik-devel to vnmik/
+	@rsync -uv bin/ctan bin/vnmik.* $(rcdir)/bin/
+	@rsync -uv vnmik.log/VERSION vnmik.log/z.* $(rcdir)/vnmik.log/
+	@rsync -uv tex.doc/test/*.tex $(rcdir)/tex.doc/test/
+	@rsync -uv tex.doc/vntex/*.pdf $(rcdir)/tex.doc/vntex/
+	@rsync -uv *.bat $(rcdir)/
 	@rm -fv $(rcdir)/vnmik.log/z.vnmik_test
-	@cp -ufv distro/vntex.sty $(rcdir)/tex.user/tex/latex/vntex
-	@cp -ufv vnmik.doc/ReadMe.png $(rcdir)/
+	@rsync -uv distro/vntex.sty $(rcdir)/tex.user/tex/latex/vntex
+	@rsync -uv vnmik.doc/ReadMe.png $(rcdir)/
 
 copy_hard: # hard copy files from bin directory
-	@cp -ufv bin/*.* $(rcdir)/bin/
+	@rsync -uv bin/*.* $(rcdir)/bin/
 	@mkdir -p $(rcdir)/bin/{libs,dlls}
-	@cp -urfv bin/dlls/* $(rcdir)/bin/dlls
-	@cp -urfv bin/libs/* $(rcdir)/bin/libs
-	@rm -rfv $(rcdir)/bin/{dlls,libs}/.svn
+	@rsync -urv bin/dlls/ $(rcdir)/bin/dlls/ --exclude="*.svn*"
+	@rsync -urv bin/libs/ $(rcdir)/bin/libs/ --exclude="*.svn*"
+	@rm -rfv $(rcdir)/bin/dlls/.svn $(rcdir)/bin/libs/.svn
 
 cleanup_before: # delete some simple files
 	@rm -rfv $(rcdir)/tex.doc/{vntex,test}
@@ -48,7 +49,7 @@ distro: version cleanup_before copy copy_hard cleanup_after chmod
 version:
 	@grep 'export VERSION' $(rddir)/bin/vnmik.configuration > vnmik.log/VERSION
 
-testversion:
+test_version:
 	@echo $(version)
 
 chmod:
