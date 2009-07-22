@@ -169,7 +169,7 @@ subs_file() # substitute with double slash ( for registry files )
 	local VAR
 	local VARI
 	stat_done "($FUNCNAME) source: $1"
-	stat_done "($FUNCNAME) desctination: $2"
+	stat_done "($FUNCNAME) destination: $2"
 	if [ "x$1" != "x" -a -f "$1" -a -r "$1" ]; then
 		# == PREFIX ==
 		VAR=$(cygpath -d $PREFIX 2>/dev/null )
