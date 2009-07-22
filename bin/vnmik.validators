@@ -124,13 +124,22 @@ check_DiskSpace()
 # #1: --exit ( exit if failed )
 check_RegeditProgram()
 {
-	stat_log "checking for registry program"
+	stat_log "checking for regtool program"
 	type -P regtool.exe >/dev/null 2>&1
 	if [ $? -ge 1 ]; then
-		stat_fail $1 "registry tool not found"
+		stat_fail $1 "regtool not found"
 	else
-		stat_done "registry tool found"
-		stat_log "registry found at `type -P regtool.exe`"
+		stat_done "regtool found"
+		stat_log "regtool at `type -P regtool.exe`"
+
+		stat_log "checking for reg.exe program"
+		type -P reg.exe >/dev/null 2>&1
+		if [ $? -ge 1 ]; then
+			stat_fail $1 "reg.exe not found"
+		else
+			stat_done "reg.exe found"
+			stat_log "reg.exe at `type -P reg.exe`"
+		fi
 	fi
 }
 
