@@ -104,7 +104,13 @@ install_version() # install vnmik version
 	echo "VNMIKID_A=$VNMIKID # $VERSION # `date`" > $LOGDIR/VERSION
 }
 
-texmf_texhash() # update miktex databased and make fonts maps
+#
+# update miktex database and make fonts maps
+# $*: options parsed to texhash (without slash)
+# for e.g., mkmaps update-fndb mklinks
+# use 'default' to get initex to run in default mode
+#
+texmf_texhash()
 {
 	stat_msg "updating texmf database"
 	local TEXHASH=initexmf.exe
@@ -112,13 +118,15 @@ texmf_texhash() # update miktex databased and make fonts maps
 	if [ $? -gt 0 ]; then
 		stat_warn "unexcutable: $TEXHASH"
 	else
-		# "--dump --mklinks"
-		for option in "--mkmaps" "--update-fndb"; do
-			stat_log "running: initexmf --verbose $option"
-			$TEXHASH --verbose $option	|| stat_log "return status: $?"
+		if [[ "x$1" == "xdefault" ]]; then
+			options="mkmaps update-fndb"
+		else
+			options="$*"
+		fi
+		for option in $options; do
+			stat_log "running: initexmf --verbose --$option"
+			$TEXHASH --verbose --$option || stat_log "return status: $?"
 		done
-		# stat_msg "moving files to tex.bin/"
-		# mv $PREFIX/tex.base/miktex/bin/* $PREFIX/tex.bin/
 	fi
 }
 
